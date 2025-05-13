@@ -7,12 +7,12 @@ import { validateBody } from '../joi/joi.functions';
 const router: Router = express.Router();
 
 router.post(
-    '/', 
+    './', 
     validateBody(userBodySchema), 
     controlCreateUser
 );
 router.get(
-    '/', 
+    './', 
     controlReadAllUsers
 );
 
