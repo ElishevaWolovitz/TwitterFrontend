@@ -1,7 +1,7 @@
 {
   "name": "twitterbackend",
   "version": "1.0.0",
-  "main": "TwitterSevice/app.ts",
+  "main": "TwitterService/app.ts",
   "scripts": {
     "start": "ts-node TwitterService/app.ts",
     "dev": "nodemon --exec ts-node TwitterService/app.ts"
