@@ -1,40 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import axios from "axios";
+import type {UserTypeFront} from './types/user.type';
 
-const baseUrl = import.meta.env.VITE_API_URL;
 
+const api = axios.create({baseURL: `http://localhost:3000`});
 function App() {
-  const [users, setUsers] = useState<{ _id: string, username: string, displayName: string }[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [users, setUsers] = useState<UserTypeFront[]>([]);
 
   const fetchUsers = () => {
-    setLoading(true);
-    setError("");
-    axios
-      .get(`${baseUrl}/users`)
-      .then((res) => {
-        setUsers(res.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError("Failed to load users");
-        setLoading(false);
-      });
+    api.get('/users')
+    .then((res) => { 
+      const data = Array.isArray(res.data) ? res.data : [res.data];
+      setUsers(data);
+    });
   };
-
+  useEffect(() => {
+    console.log("users", users)
+    console.log("data", users.map((user) => user._id))
+  }, [users]);
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>All Items</h1>
+      <h1>All Users</h1>
       <button onClick={fetchUsers}>Load users</button>
-
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
       <ul>
-        {users.map((user) => (
-          <li key={user._id}>{user.username}</li>
-        ))}
+        {/* {users.map((user, index) => (
+          <li key={user._id || index}>
+            <h2>{user.username}</h2>
+            <p>{user.displayName}</p>
+          </li>
+        ))} */}
       </ul>
     </div>
   )
