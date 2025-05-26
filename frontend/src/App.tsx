@@ -11,8 +11,6 @@ function App() {
     api.get('/users')
     .then((res) => {
       console.log("res", res)
-     // const data = Array.isArray(res.data) ? res.data : [res.data];
-
       setUsers(res.data.data);
     });
   };
