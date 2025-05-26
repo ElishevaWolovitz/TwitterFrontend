@@ -1,32 +1,32 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import type { UserTypeFront } from './types/user.type';
+import type { ShmoozerType } from './types/shmoozer.type';
 
 
 const api = axios.create({baseURL: `http://localhost:3000`});
 function App() {
-  const [users, setUsers] = useState<UserTypeFront[]>([]);
+  const [shmoozers, setUsers] = useState<ShmoozerType[]>([]);
 
   const fetchUsers = () => {
-    api.get('/users')
+    api.get('/shmoozers')
     .then((res) => {
       console.log("res", res)
       setUsers(res.data.data);
     });
   };
   useEffect(() => {
-    console.log("users", users)
-    console.log("data", users.map((user) => {return user}))
-  }, [users]);
+    console.log("shmoozers", shmoozers)
+    console.log("data", shmoozers.map((shmoozer) => {return shmoozer}))
+  }, [shmoozers]);
   return (
     <div style={{ padding: "2rem" }}>
       <h1>All Users</h1>
-      <button onClick={fetchUsers}>Load users</button>
+      <button onClick={fetchUsers}>Load shmoozers</button>
       <ul>
-        {users.map((user, index) => (
-          <li key={user._id || index}>
-            <h2>{user.username}</h2>
-            <p>{user.displayName}</p>
+        {shmoozers.map((shmoozer, index) => (
+          <li key={shmoozer._id || index}>
+            <h2>{shmoozer.shmoozerName}</h2>
+            <p>{shmoozer.displayName}</p>
           </li>
         ))}
       </ul>
