@@ -1,9 +1,9 @@
 import { Types } from 'mongoose';
 
-export type TweetType = {
+export type KibType = {
     _id?: Types.ObjectId;
-    tweetName: string;
-    userId: Types.ObjectId;
+    kibName: string;
+    shmoozerId: Types.ObjectId;
     text: string;
     media?: string;
     likes?: number;

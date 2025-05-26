@@ -1,0 +1,23 @@
+import { Request, Response } from 'express';
+import { 
+    manageCreateShmoozer, 
+    manageReadAllShmoozers
+} from "./shmoozer.manager";
+import { ShmoozerType } from "../types/shmoozer.types";
+import { errorHandler } from '../handler/error.handler';
+import { successHandler } from '../handler/success.handler';
+
+// Create
+export const controlCreateShmoozer = async (req: Request, res: Response) => {
+    const shmoozer = req.body as ShmoozerType;
+    const createShmoozerResult = await manageCreateShmoozer(shmoozer).catch(errorHandler(res, 400));
+    if(createShmoozerResult)
+        successHandler(res, `Created new shmoozer (shmoozer id: ${shmoozer._id}).`, createShmoozerResult, 200);
+};
+
+// Read All
+export const controlReadAllShmoozers = async (req: Request, res: Response) => {
+    const shmoozers = await manageReadAllShmoozers().catch(errorHandler(res, 400));
+    if(shmoozers)
+        successHandler(res, `Read all shmoozers.`, shmoozers, 200);
+};

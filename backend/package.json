@@ -1,22 +1,14 @@
 {
-  "name": "twitterbackend",
+  "name": "kibitzbackend",
   "version": "1.0.0",
-  "main": "TwitterService/app.ts",
+  "main": "KibitzService/app.ts",
   "scripts": {
-    "start": "ts-node TwitterService/app.ts",
-    "dev": "nodemon --exec ts-node TwitterService/app.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ElishevaWolovitz/TwitterBackend.git"
+    "start": "ts-node KibitzService/app.ts",
+    "dev": "nodemon --exec ts-node KibitzService/app.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ElishevaWolovitz/TwitterBackend/issues"
-  },
-  "homepage": "https://github.com/ElishevaWolovitz/TwitterBackend#readme",
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",

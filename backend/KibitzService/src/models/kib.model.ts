@@ -1,16 +1,16 @@
 import {Document, Schema, model} from 'mongoose';
-import { TweetType } from '../types/tweet.type';
+import { KibType } from '../types/kib.type';
 
-const tweetSchema: Schema = new Schema({
-  tweetName: { 
+const kibSchema: Schema = new Schema({
+  kibName: { 
     type: String, 
     required: true,
     index: true,
   },
-  userId: {
+  shmoozerId: {
     type: Schema.Types.ObjectId,
     required: true,
-    ref: 'UserModel',
+    ref: 'ShmoozerModel',
   },
   text: {
     type: String,
@@ -29,6 +29,6 @@ const tweetSchema: Schema = new Schema({
     type: Date, 
     default: Date.now,
   }
-},{collection: 'tweets'});
+},{collection: 'kibs'});
 
-export const TweetModel = model<TweetType & Document>('TweetModel', tweetSchema);
+export const KibModel = model<KibType & Document>('KibModel', kibSchema);
