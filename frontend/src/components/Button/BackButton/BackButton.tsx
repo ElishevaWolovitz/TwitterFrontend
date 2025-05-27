@@ -1,10 +1,16 @@
-
+import { useNavigate } from 'react-router-dom';
 
 const BackButton = () => {
-    return (
-        <>
-        </>
-    )
-}
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(-1); // Go back one step in history
+  };
 
-export { BackButton }; 
+  return (
+    <button type="button" onClick={handleClick}>
+      Back
+    </button>
+  );
+};
+
+export { BackButton };
