@@ -1,8 +1,8 @@
-import BasicList from '../../components/List/BasicList'
-
+import Navbar from '../../components/Navbar/index';
 const HomePage = () => {
   return (
     <>
+    <Navbar />
         <h1>Home Page</h1>
     </>
   )

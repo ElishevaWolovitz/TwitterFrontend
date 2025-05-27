@@ -1,7 +1,10 @@
+import Navbar from '../../components/Navbar/index'
+
 const KibsPage = () => {
   return (
     <>
-        <h1>Kibs Page</h1>
+      <Navbar />
+      <h1>Kibs Page</h1>
     </>
   )
 }
