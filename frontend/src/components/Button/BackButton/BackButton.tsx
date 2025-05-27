@@ -1,16 +1,21 @@
 import { useNavigate } from 'react-router-dom';
+import { createUseStyles } from "react-jss";
+import { Styles } from "./styles";
+
+const useStyles = createUseStyles(Styles);
 
 const BackButton = () => {
-  const navigate = useNavigate();
-  const handleClick = () => {
-    navigate(-1); // Go back one step in history
-  };
+    const classes = useStyles();
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate(-1); 
+    };
 
-  return (
-    <button type="button" onClick={handleClick}>
-      Back
-    </button>
-  );
+    return (
+        <button className={classes.button} type="button" onClick={handleClick}>
+        &#8592;
+        </button>
+    );
 };
 
 export { BackButton };
