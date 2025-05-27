@@ -4,7 +4,7 @@ import { navItems } from "./const";
 import { createUseStyles } from 'react-jss';
 import { Styles } from './styles';
 import type { NavLinkType } from './types'
-import BackButton from "../Button/BackButton/index";
+import BackButton from "../Button/BackButton";
 
 
 const useStyles = createUseStyles(Styles);

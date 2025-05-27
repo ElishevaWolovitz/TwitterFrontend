@@ -1,10 +1,11 @@
-import Navbar from '../../components/Navbar/index'
+import Navbar from '../../components/Navbar';
 
 const ShmoozersPage = () => {
   return (
     <>
       <Navbar />
       <h1>Shmoozer Page</h1>
+
     </>
   )
 }
