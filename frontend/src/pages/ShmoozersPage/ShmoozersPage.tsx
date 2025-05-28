@@ -1,5 +1,5 @@
 import Navbar from '../../components/Navbar';
-import BasicList from '../../components/List/BasicList';
+import List from '../../components/List';
 
 const mockData = [ 'apple', 'banana', 'orange', 'grape', 'kiwi', 'mango', 'peach', 'pear', 'pineapple', 'strawberry' ];
 const mockDataFunc = (item: string) => {return `${item}`;}
@@ -8,7 +8,7 @@ const ShmoozersPage = () => {
     <>
       <Navbar />
       <h1>Shmoozers Page</h1>
-      <BasicList 
+      <List 
         items={mockData}
         printItems={mockDataFunc}
         />
