@@ -11,11 +11,11 @@ export const printKib = (kib: KibType): string => {
     return printable
 }
 
-export const useEditKib = (idToEdit: string) => {
-    console.log(`edit kib with id: ${idToEdit}`);
+export const editKib = (kibToEdit: KibType) => {
+    console.log(`edit kib with id: ${kibToEdit._id}`);
 };
 
 
-export const deleteKib = ( idToDelete: string) => {
-    console.log(`delete kib with id: ${idToDelete}`);
+export const deleteKib = (kibToDelete: KibType) => {
+    console.log(`delete kib with id: ${kibToDelete._id}`);
 };
