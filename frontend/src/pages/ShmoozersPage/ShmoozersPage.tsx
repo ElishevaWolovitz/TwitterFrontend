@@ -10,7 +10,7 @@ const ShmoozersPage = () => {
       <h1>Shmoozers Page</h1>
       <List 
         items={mockShmoozers}
-        printItems={mockShmoozerFunc}
+        printItem={mockShmoozerFunc}
         />
 
     </>

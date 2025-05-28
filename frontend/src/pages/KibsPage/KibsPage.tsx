@@ -11,7 +11,7 @@ const KibsPage = () => {
       <h1>Kibs Page</h1>
       <List 
         items={mockKibs}
-        printItems={printKib}
+        printItem={printKib}
         onEdit={editKib}
         onDelete={deleteKib}
         />
