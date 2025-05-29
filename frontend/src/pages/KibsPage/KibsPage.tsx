@@ -1,5 +1,4 @@
 import Navbar from '../../components/Navbar';
-import List from '../../components/List';
 import SearchBar from '../../components/SearchBar';
 import { printKib, editKib, deleteKib, filterKibs } from './functions';
 import { mockKibs } from './mockKibs';
