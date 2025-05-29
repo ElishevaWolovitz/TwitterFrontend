@@ -13,12 +13,9 @@ const KibsPage = () => {
       <SearchBar 
         items={mockKibs}
         filterItems={filterKibs}
-        printItem={printKib}/>
-      <List 
-        items={mockKibs}
         printItem={printKib}
-        onEdit={editKib}
-        onDelete={deleteKib}
+        editItem={editKib}
+        deleteItem={deleteKib}
         />
     </>
   )
