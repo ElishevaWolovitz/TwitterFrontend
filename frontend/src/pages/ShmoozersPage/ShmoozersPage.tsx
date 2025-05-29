@@ -1,8 +1,9 @@
 import Navbar from '../../components/Navbar';
 import List from '../../components/List';
+import { mockShmoozers } from './mockShmoozers';
+import { printShmoozer } from './functions';
 
-const mockShmoozers = [ 'apple', 'banana', 'orange', 'grape', 'kiwi', 'mango', 'peach', 'pear', 'pineapple', 'strawberry' ];
-const mockShmoozerFunc = (item: string) => {return `${item}`;}
+
 const ShmoozersPage = () => {
   return (
     <>
@@ -10,7 +11,7 @@ const ShmoozersPage = () => {
       <h1>Shmoozers Page</h1>
       <List 
         items={mockShmoozers}
-        printItem={mockShmoozerFunc}
+        printItem={printShmoozer}
         />
 
     </>
