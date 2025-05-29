@@ -3,12 +3,12 @@ import { map } from "lodash/fp";
 
 
 
-const List = <T,>({items, printItem, onEdit, onDelete}: ListProps<T>) => {
+const List = <T,>({items, printItem, editItem, deleteItem}: ListProps<T>) => {
     const createListItem = (item: T) => {
         return <li>
                     {printItem(item)}
-                    {onEdit && (<button type="button" onClick={() => onEdit(item)}>Edit</button>)}
-                    {onDelete && (<button type="button" onClick={() => onDelete(item)}>Delete</button>)}
+                    {editItem && (<button type="button" onClick={() => editItem(item)}>Edit</button>)}
+                    {deleteItem && (<button type="button" onClick={() => deleteItem(item)}>Delete</button>)}
                 </li>
     }
     return (

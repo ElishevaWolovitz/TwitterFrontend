@@ -1,6 +1,6 @@
 export type ListProps<T> = {
   items: T[];
   printItem: (item: T) => string;
-  onEdit?: (item: T) => void;
-  onDelete?: (item: T) => void;
+  editItem?: (item: T) => void;
+  deleteItem?: (item: T) => void;
 };
