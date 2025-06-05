@@ -1,4 +1,5 @@
 import type { KibType } from "./types";
+import type { AxiosInstance } from "axios";
 
 export const printKib = (kib: KibType) => {
     const printable = <> 
@@ -17,8 +18,17 @@ export const editKib = (kibToEdit: KibType) => {
 };
 
 
-export const deleteKib = (kibToDelete: KibType) => {
-    console.log(`deleted kib with id: ${kibToDelete._id}`);
+export const deleteKib = async (
+    kibToDelete: KibType,
+    api: AxiosInstance,
+    setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
+    try {
+    await api.delete(`/kibs/${kibToDelete._id}`);
+    setKibs(prev => prev.filter(kib => kib._id !== kibToDelete._id));
+    console.log(`Deleted kib with id: ${kibToDelete._id}`);
+  } catch (error) {
+    console.error("Failed to delete kib:", error);
+  }
 };
 
 export const filterKibs = (kibs: KibType[], query: string) => {
