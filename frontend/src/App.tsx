@@ -10,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<HomePage/>} />
-        <Route path='kibs' element={<KibsPage/>} />
+        <Route path='kibs' element={<KibsPage api={api}/>} />
         <Route path='shmoozers' element={<ShmoozersPage api={api}/>} />
       </Routes>
     </>
