@@ -14,14 +14,12 @@ const SearchBar =<T,>({items, filterItems, printItem, editItem, deleteItem}: Sea
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
-            <ul>
-                <List 
-                    items={filteredItems}
-                    printItem={printItem}
-                    editItem={editItem}
-                    deleteItem={deleteItem}
-                />
-            </ul>
+            <List 
+                items={filteredItems}
+                printItem={printItem}
+                editItem={editItem}
+                deleteItem={deleteItem}
+            />
         </div>
     )
 }
