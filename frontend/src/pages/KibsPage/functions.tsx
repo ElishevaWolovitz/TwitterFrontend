@@ -22,6 +22,6 @@ export const deleteKib = (kibToDelete: KibType) => {
 };
 
 export const filterKibs = (kibs: KibType[], query: string) => {
-    console.log(`filter all kibs so only kibs matching sting query ${query} from kibs: ${kibs}`);
-    return kibs;
+    if (!query) return kibs;
+    return kibs.filter(kib => kib.kibName == query);
 }
