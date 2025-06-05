@@ -6,7 +6,7 @@ export type KibPageProps = {
 
 
 export type KibType = {
-  _id?: string;
+  _id: string;
   kibName: string;
   shmoozerId: string;
   text: string;
