@@ -1,13 +1,14 @@
 import type { KibType } from "./types";
 
-export const printKib = (kib: KibType): string => {
-    const printable = `id: ${kib._id},
-    kibName: ${kib.kibName},
-    shmoozerId: ${kib.shmoozerId},
-    text: ${kib.text},
-    media: ${kib.media},
-    likes: ${kib.likes},
-    created on: ${kib.createdAt}`
+export const printKib = (kib: KibType) => {
+    const printable = <> 
+    <p>id: {kib._id} </p>
+    <p>kibName: {kib.kibName}</p>
+    <p>shmoozerId: {kib.shmoozerId}</p>
+    <p>text: {kib.text}</p>
+    {kib.media && (<p>media: {kib.media}</p>)}
+    {kib.likes && (<p>likes: {kib.likes}</p>)}
+    {kib.createdAt && (<p>created on: {kib.createdAt.toString()}</p>)}</>
     return printable
 }
 
