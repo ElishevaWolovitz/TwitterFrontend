@@ -13,6 +13,9 @@ const KibsPage = ({api}: KibPageProps) => {
       setKibs(res.data.data);
     });
   }, [api]);
+  const handleDeleteKib = (kib: KibType) => {
+    deleteKib(kib, api, setKibs);
+  };
   return (
     <>
       <Navbar />
@@ -22,7 +25,7 @@ const KibsPage = ({api}: KibPageProps) => {
         filterItems={filterKibs}
         printItem={printKib}
         editItem={editKib}
-        deleteItem={deleteKib}
+        deleteItem={handleDeleteKib}
         />
     </>
   )
