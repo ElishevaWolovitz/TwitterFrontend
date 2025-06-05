@@ -18,7 +18,7 @@ export const editKib = (kibToEdit: KibType) => {
 
 
 export const deleteKib = (kibToDelete: KibType) => {
-    console.log(`delete kib with id: ${kibToDelete._id}`);
+    console.log(`deleted kib with id: ${kibToDelete._id}`);
 };
 
 export const filterKibs = (kibs: KibType[], query: string) => {
