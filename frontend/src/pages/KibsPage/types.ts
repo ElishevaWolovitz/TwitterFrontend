@@ -1,3 +1,10 @@
+import type { AxiosInstance } from "axios";
+
+export type KibPageProps = {
+  api: AxiosInstance;
+};
+
+
 export type KibType = {
   _id?: string;
   kibName: string;
