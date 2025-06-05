@@ -1,16 +1,24 @@
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
 import { printKib, editKib, deleteKib, filterKibs } from './functions';
-import { mockKibs } from './mockKibs';
+import type { KibPageProps, KibType } from './types';
+import { useState, useEffect } from 'react';
 
 
-const KibsPage = () => {
+const KibsPage = ({api}: KibPageProps) => {
+  const [kibs, setKibs] = useState<KibType[]>([]);
+  //change this .then and no unnamed functions
+  useEffect(() => {
+    api.get('/kibs').then((res) => {
+      setKibs(res.data.data);
+    });
+  }, [api]);
   return (
     <>
       <Navbar />
       <h1>Kibs Page</h1>
       <SearchBar 
-        items={mockKibs}
+        items={kibs}
         filterItems={filterKibs}
         printItem={printKib}
         editItem={editKib}
