@@ -2,19 +2,19 @@ import type { KibType } from './types';
 import { useForm } from "react-hook-form";
 
 
-const KibEditModal = (kibToEdit: KibType) => {
+const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt}: KibType) => {
     const {
         register,            // to connect inputs to form logic
         handleSubmit,        // to handle form submission
         formState: { errors } // to check for validation errors
     } = useForm<KibType>({
         defaultValues: {
-            kibName: kibToEdit.kibName || '',
-            shmoozerId: kibToEdit.shmoozerId || '',
-            text: kibToEdit.text || '',
-            media: kibToEdit.media || '',
-            likes: kibToEdit.likes || 0,
-            createdAt: kibToEdit.createdAt 
+            kibName: kibName || '',
+            shmoozerId: shmoozerId || '',
+            text: text || '',
+            media: media || '',
+            likes: likes || 0,
+            createdAt: createdAt 
         }
     });
 
@@ -26,7 +26,7 @@ const KibEditModal = (kibToEdit: KibType) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <h1> Edit Kib </h1>
             <div>
-                <strong>ID:</strong> {kibToEdit._id}
+                <strong>ID:</strong> {_id}
             </div>
             <label>
                 Kib Name:
@@ -54,7 +54,7 @@ const KibEditModal = (kibToEdit: KibType) => {
                 />
                 {errors.text && <span>This field is required</span>}
             </label>
-            {kibToEdit.media && (
+            {media && (
                 <label>
                     Media:
                     <input
@@ -64,7 +64,7 @@ const KibEditModal = (kibToEdit: KibType) => {
                     />
                 </label>
             )}
-            {kibToEdit.likes && (
+            {likes && (
                 <label>
                     Likes:
                     <input
