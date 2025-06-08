@@ -5,7 +5,7 @@ import EditModal from '../../components/EditModal';
 
 
 
-const List = <T,>({items, printItem, editItem, deleteItem}: ListProps<T>) => {
+const List = <T,>({items, printItem, editItem, deleteItem, editModalChildren}: ListProps<T>) => {
     const [openEditModal, setOpenEditModal] = useState(false);
     const createListItem = (item: T & { _id: string }) => {
         return <li key={item._id ?? JSON.stringify(item)}>
@@ -19,7 +19,7 @@ const List = <T,>({items, printItem, editItem, deleteItem}: ListProps<T>) => {
             <ul>
                 {map(createListItem)(items)}
             </ul>
-            {openEditModal && <EditModal openModal={openEditModal} setOpenModal={setOpenEditModal} />}
+            {openEditModal && <EditModal openModal={openEditModal} setOpenModal={setOpenEditModal} children={editModalChildren}/>}
         </>
     )
 }
