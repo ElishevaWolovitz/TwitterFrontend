@@ -10,7 +10,7 @@ const SearchBar =<T,>({items, filterItems, printItem, editItem, deleteItem}: Sea
         <div className="search-bar">
             <input
                 type="text"
-                placeholder="Search tweets..."
+                placeholder="Search kib names..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
             />
