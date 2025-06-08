@@ -1,4 +1,4 @@
-const EditModal =() => {
+const EditModal = () => {
     return (
         <>
         </>
