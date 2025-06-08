@@ -7,9 +7,18 @@ export const KibModalStructure = (kibToEdit: KibType) => {
         register,            // to connect inputs to form logic
         handleSubmit,        // to handle form submission
         formState: { errors } // to check for validation errors
-    } = useForm<FormData>();
+    } = useForm<KibType>({
+        defaultValues: {
+            kibName: kibToEdit.kibName || '',
+            shmoozerId: kibToEdit.shmoozerId || '',
+            text: kibToEdit.text || '',
+            media: kibToEdit.media || '',
+            likes: kibToEdit.likes || 0,
+            createdAt: kibToEdit.createdAt 
+        }
+    });
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = (data: KibType) => {
         console.log("Form submitted:", data);
     };
 
@@ -23,35 +32,34 @@ export const KibModalStructure = (kibToEdit: KibType) => {
                 Kib Name:
                 <input
                     type="text"
-                    defaultValue={kibToEdit.kibName}
-                    name="kibName"
+                    {...register("kibName", { required: true })}
                     placeholder="Kib Name"
                 />
+                {errors.kibName && <span>This field is required</span>}
             </label>
             <label>
                 Shmoozer ID:
                 <input
                     type="text"
-                    defaultValue={kibToEdit.shmoozerId}
-                    name="shmoozerId"
+                    {...register("shmoozerId", { required: true })}
                     placeholder="Shmoozer ID"
                 />
+                {errors.shmoozerId && <span>This field is required</span>}
             </label>
             <label>
                 Text:
                 <textarea
-                    defaultValue={kibToEdit.text}
-                    name="text"
+                    {...register("text", { required: true })}
                     placeholder="Kib Text"
                 />
+                {errors.text && <span>This field is required</span>}
             </label>
             {kibToEdit.media && (
                 <label>
                     Media:
                     <input
                         type="text"
-                        defaultValue={kibToEdit.media}
-                        name="media"
+                        {...register("media")}
                         placeholder="Media URL"
                     />
                 </label>
@@ -61,8 +69,7 @@ export const KibModalStructure = (kibToEdit: KibType) => {
                     Likes:
                     <input
                         type="number"
-                        defaultValue={kibToEdit.likes}
-                        name="likes"
+                        {...register("likes")}
                         placeholder="Number of Likes"
                     />
                 </label>
@@ -71,8 +78,7 @@ export const KibModalStructure = (kibToEdit: KibType) => {
                 Created At:
                 <input
                     type="text"
-                    defaultValue={kibToEdit.createdAt?.toString() || ''}
-                    name="createdAt"
+                    {...register("createdAt")}
                     placeholder="Creation Date"
                     disabled
                 />
