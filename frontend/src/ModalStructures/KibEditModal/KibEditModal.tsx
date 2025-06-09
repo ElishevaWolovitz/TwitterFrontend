@@ -19,6 +19,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
         }
     });
     const onSubmit = (kib: KibType) => {
+        console.log("Submitting edited kib:", kib);
         editItem(kib);
         onClose();
     };
@@ -27,6 +28,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
         <form onSubmit={handleSubmit(onSubmit)}>
             <h3> Edit Kib </h3>
             <div>
+                <input type="hidden" {...register("_id")} value={_id} />
                 <strong>ID:</strong> {_id}
             </div>
             <label>
