@@ -55,6 +55,18 @@ export const filterKibs = (kibs: KibType[], query: string) => {
     return kibs.filter(kib => kib.kibName.includes(query));
 }
 
-export const createNewKib = () => {
-    console.log("Create new kib clicked");
+export const createNewKib = async (
+  kibDataToCreate: KibType,
+  api: AxiosInstance,
+  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>
+) => {
+  try {
+    const response = await api.post("/kibs", kibDataToCreate);
+    const newKib = response.data.data; 
+    console.log("New kib created:", newKib);
+    setKibs(prev => [...prev, newKib]);
+    console.log("New kib created:", newKib);
+  } catch (error) {
+    console.error("Failed to create new kib:", error);
+  }
 }

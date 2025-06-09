@@ -1,11 +1,13 @@
 import type { CreateNewModalProps } from "./types"
 
-const CreateNewModal =<T extends object>({openModal, setOpenModal, createNewItem, children: ChildComponent, itemToCreateNew}: CreateNewModalProps<T>) => {
+const CreateNewModal =<T extends object>({openModal, setOpenModal, createNewItem, children: ChildComponent}: CreateNewModalProps<T>) => {
     return (
         <>
             {openModal && (
                 <div>
-                    <ChildComponent {...itemToCreateNew} onClose={()=> setOpenModal(false)} createNewItem={createNewItem}/>
+                    <ChildComponent {...({} as T)}
+                        onClose={()=> setOpenModal(false)} 
+                        createNewItem={createNewItem}/>
                     <button type="button" onClick={() => setOpenModal(false)}>Cancel</button>
                 </div>
             )}

@@ -6,6 +6,8 @@ import type { KibType } from '../../types/kib.types';
 import { useState, useEffect } from 'react';
 import KibEditModal from '../../ModalStructures/KibEditModal';
 import CreateNewButton from '../../components/Button/CreateNewButton';
+import KibCreateNewModal from '../../ModalStructures/KibCreateNewModal';
+import CreateNewModal from '../../components/Modal/CreateNewModal';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -22,6 +24,14 @@ const KibsPage = ({api}: KibPageProps) => {
   const handleEditKib = (kib: KibType) => {
     editKib(kib, api, setKibs)
   };
+  const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
+
+  const handleCreateNewClick = () => {
+      setOpenCreateNewModal(true);
+  };
+  const handleCreateNewItem = (kibDataToCreate: KibType) => {
+    createNewKib(kibDataToCreate, api, setKibs);
+  }
   return (
     <>
       <Navbar />
@@ -35,8 +45,14 @@ const KibsPage = ({api}: KibPageProps) => {
         ModalChildrenComp={KibEditModal}
         />
         <CreateNewButton 
-          onClick={createNewKib}/>
-
+          onClick={handleCreateNewClick}
+          />
+        <CreateNewModal
+          openModal={openCreateNewModal}
+          setOpenModal={setOpenCreateNewModal}
+          createNewItem={handleCreateNewItem}
+          children={KibCreateNewModal}
+        />
     </>
   )
 }
