@@ -52,5 +52,5 @@ export const deleteKib = async (
 
 export const filterKibs = (kibs: KibType[], query: string) => {
     if (!query) return kibs;
-    return kibs.filter(kib => kib.kibName == query);
+    return kibs.filter(kib => kib.kibName.includes(query));
 }
