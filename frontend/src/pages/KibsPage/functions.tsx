@@ -54,3 +54,7 @@ export const filterKibs = (kibs: KibType[], query: string) => {
     if (!query) return kibs;
     return kibs.filter(kib => kib.kibName.includes(query));
 }
+
+export const createNewKib = () => {
+    console.log("Create new kib clicked");
+}
