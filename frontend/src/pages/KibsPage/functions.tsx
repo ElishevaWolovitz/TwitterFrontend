@@ -18,17 +18,20 @@ export const editKib = async (
   api: AxiosInstance,
   setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
     try {
+      //next line is to send a kib without the _id field as this should not be part of th ejson sent in the patch
+      const { _id, ...kibData } = editedKib;
+      console.log("Edited kib:", editedKib);
         // 1. Update the kib in the backend
-        await api.put(`/kibs/${editedKib._id}`, editedKib);
+        await api.patch(`/kibs/${editedKib._id}`, kibData);
 
         // 2. Optionally update local state (if you have setKibs)
         setKibs(prev => prev.map(kib => kib._id === editedKib._id ? { ...kib, ...editedKib } : kib));
 
         // 3. Optionally show feedback
-        alert("Kib updated!");
+        console.log("Kib updated!");
     } catch (error) {
         // Optionally show error feedback
-        alert("Failed to update kib.");
+        console.log("Failed to update kib.");
         console.error(error);
     }
 };
