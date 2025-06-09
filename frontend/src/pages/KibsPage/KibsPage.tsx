@@ -1,7 +1,8 @@
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
 import { printKib, editKib, deleteKib, filterKibs } from './functions';
-import type { KibPageProps, KibType } from './types';
+import type { KibPageProps } from './types';
+import type { KibType } from '../../types/kib.types';
 import { useState, useEffect } from 'react';
 import KibEditModal from '../../ModalStructures/KibEditModal';
 
@@ -17,6 +18,9 @@ const KibsPage = ({api}: KibPageProps) => {
   const handleDeleteKib = (kib: KibType) => {
     deleteKib(kib, api, setKibs);
   };
+  const handleEditedKib = (kib: KibType) => {
+    editKib(kib, api, setKibs)
+  };
   return (
     <>
       <Navbar />
@@ -25,7 +29,7 @@ const KibsPage = ({api}: KibPageProps) => {
         items={kibs}
         filterItems={filterKibs}
         printItem={printKib}
-        editItem={editKib}
+        editItem={handleEditedKib}
         deleteItem={handleDeleteKib}
         editModalChildren={KibEditModal}
         />
