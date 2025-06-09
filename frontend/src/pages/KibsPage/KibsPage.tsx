@@ -44,15 +44,15 @@ const KibsPage = ({api}: KibPageProps) => {
         deleteItem={handleDeleteKib}
         ModalChildrenComp={KibEditModal}
         />
-        <CreateNewButton 
-          onClick={handleCreateNewClick}
-          />
-        <CreateNewModal
-          openModal={openCreateNewModal}
-          setOpenModal={setOpenCreateNewModal}
-          createNewItem={handleCreateNewItem}
-          children={KibCreateNewModal}
+      <CreateNewButton 
+        onClick={handleCreateNewClick}
         />
+      <CreateNewModal
+        openModal={openCreateNewModal}
+        setOpenModal={setOpenCreateNewModal}
+        createNewItem={handleCreateNewItem}
+        children={KibCreateNewModal}
+      />
     </>
   )
 }
