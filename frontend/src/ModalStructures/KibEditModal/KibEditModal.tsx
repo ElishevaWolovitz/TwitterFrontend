@@ -10,11 +10,11 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
         formState: { errors } 
     } = useForm<KibType>({
         defaultValues: {
-            kibName: kibName || '',
-            shmoozerId: shmoozerId || '',
-            text: text || '',
-            media: media || '',
-            likes: likes || 0,
+            kibName: kibName,
+            shmoozerId: shmoozerId,
+            text: text,
+            media: media,
+            likes: likes,
             createdAt: createdAt 
         }
     });
