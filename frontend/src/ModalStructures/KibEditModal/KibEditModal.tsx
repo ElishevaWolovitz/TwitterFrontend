@@ -1,8 +1,8 @@
-import type { KibType } from './types';
+import type { KibEditModalProp, KibType } from './types';
 import { useForm } from "react-hook-form";
 
 
-const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt}: KibType) => {
+const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt, onClose}: KibEditModalProp) => {
     const {
         register,
         handleSubmit,             // to connect inputs to form logic        // to handle form submission
