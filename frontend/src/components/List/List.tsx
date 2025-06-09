@@ -1,7 +1,7 @@
 import type { ListProps } from "./types";
 import { map } from "lodash/fp";
 import { useState } from "react";
-import EditModal from '../../components/EditModal';
+import EditModal from '../Modal/EditModal';
 
 
 
