@@ -1,5 +1,6 @@
-export type EditModalProps = {
+export type EditModalProps<T> = {
     openModal: boolean;
     setOpenModal: (open: boolean) => void;
-    children: React.ReactNode;
+    children: React.ComponentType<T>;
+    itemToEdit:T;
 }

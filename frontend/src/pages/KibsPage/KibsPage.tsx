@@ -3,6 +3,7 @@ import SearchBar from '../../components/SearchBar';
 import { printKib, editKib, deleteKib, filterKibs } from './functions';
 import type { KibPageProps, KibType } from './types';
 import { useState, useEffect } from 'react';
+import KibEditModal from '../../ModalStructures/KibEditModal';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -26,6 +27,7 @@ const KibsPage = ({api}: KibPageProps) => {
         printItem={printKib}
         editItem={editKib}
         deleteItem={handleDeleteKib}
+        editModalChildren={KibEditModal}
         />
     </>
   )

@@ -1,12 +1,12 @@
 import type { EditModalProps } from "./types";
 
-const EditModal = ({openModal, setOpenModal, children}: EditModalProps) => {
+const EditModal = <T extends object>({openModal, setOpenModal, children: ChildComponent, itemToEdit}: EditModalProps<T>) => {
     return (
         <>
             {openModal && (
                 <div>
                     <h2>Edit Item</h2>
-                    {children}
+                    <ChildComponent {...itemToEdit} />
                     <button type="button" onClick={() => setOpenModal(false)}>Cancel</button>
                 </div>
             )}
