@@ -1,4 +1,4 @@
-import type { KibType } from "./types";
+import type { KibType } from "../../types/kib.types";
 import type { AxiosInstance } from "axios";
 
 export const printKib = (kib: KibType) => {
@@ -13,8 +13,24 @@ export const printKib = (kib: KibType) => {
     return printable
 }
 
-export const editKib = (kibToEdit: KibType) => {
-    console.log(`edit kib with id: ${kibToEdit._id}`);
+export const editKib = async (
+  editedKib: KibType,
+  api: AxiosInstance,
+  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
+    try {
+        // 1. Update the kib in the backend
+        await api.put(`/kibs/${editedKib._id}`, editedKib);
+
+        // 2. Optionally update local state (if you have setKibs)
+        setKibs(prev => prev.map(kib => kib._id === editedKib._id ? { ...kib, ...editedKib } : kib));
+
+        // 3. Optionally show feedback
+        alert("Kib updated!");
+    } catch (error) {
+        // Optionally show error feedback
+        alert("Failed to update kib.");
+        console.error(error);
+    }
 };
 
 
