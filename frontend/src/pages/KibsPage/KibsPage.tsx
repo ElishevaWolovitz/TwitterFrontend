@@ -1,10 +1,11 @@
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
-import { printKib, editKib, deleteKib, filterKibs } from './functions';
+import { printKib, editKib, deleteKib, filterKibs, createNewKib } from './functions';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
 import { useState, useEffect } from 'react';
 import KibEditModal from '../../ModalStructures/KibEditModal';
+import CreateNewButton from '../../components/Button/CreateNewButton';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -33,6 +34,9 @@ const KibsPage = ({api}: KibPageProps) => {
         deleteItem={handleDeleteKib}
         ModalChildrenComp={KibEditModal}
         />
+        <CreateNewButton 
+          onClick={createNewKib}/>
+
     </>
   )
 }
