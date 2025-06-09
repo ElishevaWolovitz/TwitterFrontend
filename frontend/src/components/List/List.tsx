@@ -26,10 +26,11 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, editMod
             <ul>
                 {map(createListItem)(items)}
             </ul>
-            {openEditModal && itemToEdit && editModalChildren && (
+            {openEditModal && itemToEdit && editModalChildren && editItem && (
                 <EditModal 
                     openModal={openEditModal} 
                     setOpenModal={setOpenEditModal} 
+                    editItem={editItem}
                     children={editModalChildren} 
                     itemToEdit={itemToEdit}
                 />

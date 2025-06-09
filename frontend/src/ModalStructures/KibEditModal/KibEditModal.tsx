@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 
 const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt}: KibType) => {
     const {
-        register,            // to connect inputs to form logic
-        handleSubmit,        // to handle form submission
+        register,            // to connect inputs to form logic        // to handle form submission
         formState: { errors } // to check for validation errors
     } = useForm<KibType>({
         defaultValues: {
@@ -18,13 +17,9 @@ const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt}:
         }
     });
 
-    const onSubmit = (data: KibType) => {
-        console.log("Form submitted:", data);
-    };
-
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <h1> Edit Kib </h1>
+        <>
+            <h3> Edit Kib </h3>
             <div>
                 <strong>ID:</strong> {_id}
             </div>
@@ -83,8 +78,7 @@ const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt}:
                     disabled
                 />
             </label>
-            <button type="submit">Submit</button>
-        </form>
+        </>
     )
 }
 
