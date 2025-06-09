@@ -57,26 +57,26 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                 />
                 {errors.text && <span>This field is required</span>}
             </label>
-            {media && (
-                <label>
-                    Media:
-                    <input
-                        type="text"
-                        {...register("media")}
-                        placeholder="Media URL"
-                    />
-                </label>
-            )}
-            {likes && (
-                <label>
-                    Likes:
-                    <input
-                        type="number"
-                        {...register("likes")}
-                        placeholder="Number of Likes"
-                    />
-                </label>
-            )}
+            <label>
+                Media:
+                <input
+                    type="text"
+                    {...register("media",
+                        {setValueAs: v => v === "" ? undefined : v}
+                    )}
+                    placeholder="Media URL"
+                />
+            </label>
+            <label>
+                Likes:
+                <input
+                    type="number"
+                    {...register("likes",
+                        {setValueAs: v => v === "" ? undefined : Number(v)}
+                    )}
+                    placeholder="Number of Likes"
+                />
+            </label>
             <label> 
                 Created At:
                 <input
