@@ -1,3 +1,5 @@
+import type { KibType } from '../../types/kib.types';
+
 export type KibEditModalProp = { 
     _id?: string;
     kibName: string;
@@ -7,14 +9,5 @@ export type KibEditModalProp = {
     likes?: number;
     createdAt?: Date;
     onClose: () => void;
-}
-
-export type KibType = { 
-    _id?: string;
-    kibName: string;
-    shmoozerId: string; 
-    text: string;
-    media?: string;
-    likes?: number;
-    createdAt?: Date;
+    editItem: (item: KibType) => void;
 }
