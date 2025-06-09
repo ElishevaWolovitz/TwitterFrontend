@@ -3,7 +3,7 @@ import type { KibType } from '../../types/kib.types'
 import { useForm } from "react-hook-form";
 
 
-const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt, onClose, editItem}: KibEditModalProp) => {
+const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt, onClose, editItem}: KibEditModalProp) => {
     const {
         register,
         handleSubmit,             
@@ -18,8 +18,8 @@ const KibEditModal = ({_id, kibName, shmoozerId, text, media, likes, createdAt, 
             createdAt: createdAt 
         }
     });
-    const onSubmit = (data: KibType) => {
-        console.log("Form submitted:", data);
+    const onSubmit = (kib: KibType) => {
+        editItem(kib);
         onClose();
     };
 

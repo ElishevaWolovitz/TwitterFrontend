@@ -18,7 +18,7 @@ const KibsPage = ({api}: KibPageProps) => {
   const handleDeleteKib = (kib: KibType) => {
     deleteKib(kib, api, setKibs);
   };
-  const handleEditedKib = (kib: KibType) => {
+  const handleEditKib = (kib: KibType) => {
     editKib(kib, api, setKibs)
   };
   return (
@@ -29,9 +29,9 @@ const KibsPage = ({api}: KibPageProps) => {
         items={kibs}
         filterItems={filterKibs}
         printItem={printKib}
-        editItem={handleEditedKib}
+        editItem={handleEditKib}
         deleteItem={handleDeleteKib}
-        editModalChildren={KibEditModal}
+        ModalChildrenComp={KibEditModal}
         />
     </>
   )

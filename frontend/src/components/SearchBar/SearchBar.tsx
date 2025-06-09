@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { SearchBarProps } from "./types";
 import List from '../List';
 
-const SearchBar =<T extends object>({items, filterItems, printItem, editItem, deleteItem, editModalChildren}: SearchBarProps<T>) => {
+const SearchBar =<T extends object>({items, filterItems, printItem, editItem, deleteItem, ModalChildrenComp}: SearchBarProps<T>) => {
     const [query, setQuery] = useState('');
     //Q: is it okay for me to run filterItems here with query before an input has been inputted? because it is going to be rerended? 
     const filteredItems = filterItems(items, query); 
@@ -19,7 +19,7 @@ const SearchBar =<T extends object>({items, filterItems, printItem, editItem, de
                 printItem={printItem}
                 editItem={editItem}
                 deleteItem={deleteItem}
-                editModalChildren={editModalChildren}
+                ModalChildrenComp={ModalChildrenComp}
             />
         </div>
     )

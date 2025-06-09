@@ -5,7 +5,7 @@ import EditModal from '../../components/EditModal';
 
 
 
-const List = <T extends object>({items, printItem, editItem, deleteItem, editModalChildren}: ListProps<T>) => {
+const List = <T extends object>({items, printItem, editItem, deleteItem, ModalChildrenComp}: ListProps<T>) => {
     const [openEditModal, setOpenEditModal] = useState(false);
     const [itemToEdit, setItemToEdit] = useState<T | null>(null);
 
@@ -26,12 +26,12 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, editMod
             <ul>
                 {map(createListItem)(items)}
             </ul>
-            {openEditModal && itemToEdit && editModalChildren && editItem && (
+            {openEditModal && itemToEdit && ModalChildrenComp && editItem && (
                 <EditModal 
                     openModal={openEditModal} 
                     setOpenModal={setOpenEditModal} 
                     editItem={editItem}
-                    children={editModalChildren} 
+                    children={ModalChildrenComp} 
                     itemToEdit={itemToEdit}
                 />
             )}

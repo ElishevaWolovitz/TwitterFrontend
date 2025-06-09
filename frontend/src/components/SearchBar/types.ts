@@ -6,5 +6,5 @@ export type SearchBarProps<T> = {
     printItem: (item: T) => ReactNode;
     editItem?: (item: T) => void;
     deleteItem?: (item: T) => void;
-    editModalChildren?: React.ComponentType<T & { onClose: () => void } & { editItem: (item: T) => void }>;
+    ModalChildrenComp?: React.ComponentType<T & { onClose: () => void } & { editItem: (item: T) => void }>;
 }
