@@ -8,6 +8,7 @@ import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
 import { printKib, editKib, deleteKib, filterKibs, createNewKib } from './functions';
+import { ToastContainer } from 'react-toastify';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -33,6 +34,7 @@ const KibsPage = ({api}: KibPageProps) => {
   }
   return (
     <>
+      <ToastContainer autoClose={2000}/>
       <Navbar />
       <h1>Kibs Page</h1>
       <SearchBar 

@@ -7,6 +7,7 @@ import type { ShmoozerType } from '../../types/shmoozer.types';
 import CreateNewButton from '../../components/Button/CreateNewButton';
 import CreateNewModal from '../../components/Modal/CreateNewModal';
 import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewModal';
+import { ToastContainer} from 'react-toastify';
 
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
@@ -28,6 +29,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   }
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <h1>Shmoozers Page</h1>
       <List 

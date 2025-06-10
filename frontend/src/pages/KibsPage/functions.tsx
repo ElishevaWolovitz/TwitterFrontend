@@ -1,5 +1,7 @@
 import type { AxiosInstance } from "axios";
 import type { KibType } from "../../types/kib.types";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const printKib = (kib: KibType) => {
     const printable = <> 
@@ -25,9 +27,11 @@ export const editKib = async (
       // 2. Update local state
       setKibs(prev => prev.map(kib => kib._id === editedKib._id ? { ...kib, ...editedKib } : kib));
       console.log("Kib updated!");
+      toast.success("Kib updated successfully!");
     } catch (error) {
         console.log("Failed to update kib.");
         console.error(error);
+        toast.error("Failed to update kib. Please try again.");
     }
 };
 
@@ -40,8 +44,10 @@ export const deleteKib = async (
   await api.delete(`/kibs/${kibToDelete._id}`);
   setKibs(prev => prev.filter(kib => kib._id !== kibToDelete._id));
   console.log(`Deleted kib with id: ${kibToDelete._id}`);
+  toast.success("Kib deleted successfully!");
   } catch (error) {
     console.error("Failed to delete kib:", error);
+    toast.error("Failed to delete kib. Please try again.");
   }
 };
 
@@ -59,7 +65,9 @@ export const createNewKib = async (
     const newKib = response.data.data; 
     setKibs(prev => [...prev, newKib]);
     console.log("New kib created:", newKib);
+    toast.success("New kib created successfully!");
   } catch (error) {
     console.error("Failed to create new kib:", error);
+    toast.error("Failed to create new kib. Please try again.");
   }
 }

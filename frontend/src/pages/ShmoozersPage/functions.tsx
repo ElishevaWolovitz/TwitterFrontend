@@ -1,5 +1,7 @@
 import type { ShmoozerType } from "../../types/shmoozer.types";
 import type { AxiosInstance } from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const printShmoozer = (shmoozer: ShmoozerType) => {
     const printable = <>
@@ -18,10 +20,11 @@ export const createNewShmoozer = async (
   try {
     const response = await api.post("/shmoozers", shmoozerDataToCreate);
     const newShmoozer = response.data.data; 
-    console.log("New shmoozer created:", newShmoozer);
     setShmoozers(prev => [...prev, newShmoozer]);
     console.log("New shmoozer created:", newShmoozer);
+    toast.success("New shmoozer created successfully!");
   } catch (error) {
     console.error("Failed to create new shmoozer:", error);
+    toast.error("Failed to create new shmoozer. Please try again.");
   }
 }
