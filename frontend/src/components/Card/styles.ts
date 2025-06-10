@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss'
 
-export const usePostCardStyles = createUseStyles({
+export const useCardStyles = createUseStyles({
   card: {
     border: '1px solid #ddd',
     borderRadius: 16,

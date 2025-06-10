@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type PostCardProps<T> = {
+export type CardProps<T> = {
     post: T;
     printItem: (item: T) => ReactNode;
     editItem?: (item: T) => void;

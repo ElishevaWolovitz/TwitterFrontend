@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 
 export type SearchBarProps<T> = {
     items: T[];
+    loading: boolean;
     filterItems: (items: T[], query: string) => Array<T & { _id: string }>;
     printItem: (item: T) => ReactNode;
     editItem?: (item: T) => void;

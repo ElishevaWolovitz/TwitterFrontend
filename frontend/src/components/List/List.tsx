@@ -1,40 +1,32 @@
 import type { ListProps } from "./types";
 import { map } from "lodash/fp";
-import { useState } from "react";
-import EditModal from '../Modal/EditModal';
+import Card from '../Card';
+import Loading from '../Loading';
 
 
 
-const List = <T extends object>({items, printItem, editItem, deleteItem, ModalChildrenComp}: ListProps<T>) => {
-    const [openEditModal, setOpenEditModal] = useState(false);
-    const [itemToEdit, setItemToEdit] = useState<T | null>(null);
-
-    const handleEditClick = (item: T) => {
-        setItemToEdit(item);
-        setOpenEditModal(true);
-    };
-
-    const createListItem = (item: T & { _id: string }) => {
-        return <li key={item._id ?? JSON.stringify(item)}>
-                    {printItem(item)}
-                    {editItem && (<button type="button" onClick={() => handleEditClick(item)}>Edit</button>)}
-                    {deleteItem && (<button type="button" onClick={() => deleteItem(item)}>Delete</button>)}
-                </li>
+const List = <T extends object>({items, loading, printItem, editItem, deleteItem, ModalChildrenComp}: ListProps<T>) => {
+    const handleMap = (item: T) => {
+        return (
+            <>
+                {loading ? (
+                    <Loading count={1} /> 
+                ) : ( 
+                    <Card
+                        post={item}
+                        printItem={printItem}
+                        editItem={editItem}
+                        deleteItem={deleteItem}
+                        ModalChildrenComp={ModalChildrenComp}
+                    />
+                )}
+        </>)
     }
     return (
         <>
             <ul>
-                {map(createListItem)(items)}
+                {map(handleMap)(items)}
             </ul>
-            {openEditModal && itemToEdit && ModalChildrenComp && editItem && (
-                <EditModal 
-                    openModal={openEditModal} 
-                    setOpenModal={setOpenEditModal} 
-                    editItem={editItem}
-                    children={ModalChildrenComp} 
-                    itemToEdit={itemToEdit}
-                />
-            )}
         </>
     )
 }

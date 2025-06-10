@@ -31,12 +31,14 @@ const KibsPage = ({api}: KibPageProps) => {
   const handleCreateNewItem = (kibDataToCreate: KibType) => {
     createNewKib(kibDataToCreate, api, setKibs);
   }
+  const [loading, setLoading] = useState(false)
   return (
     <>
       <Navbar />
       <h1>Kibs Page</h1>
       <SearchBar 
         items={kibs}
+        loading={loading}
         filterItems={filterKibs}
         printItem={printKib}
         editItem={handleEditKib}
