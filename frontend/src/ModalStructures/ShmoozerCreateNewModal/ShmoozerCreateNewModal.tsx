@@ -1,8 +1,8 @@
 import type { ShmoozerCreateNewModalProps } from "./types"
 import { useForm } from "react-hook-form"
-import type { ShmoozerType } from '../../types/shmoozer.type';
+import type { ShmoozerType } from '../../types/shmoozer.types';
 
-const ShmoozerCreateNewModal =({onClose, createNewShmoozer}: ShmoozerCreateNewModalProps) => {
+const ShmoozerCreateNewModal =({onClose, createNewItem}: ShmoozerCreateNewModalProps) => {
     const {
             register,
             handleSubmit,             
@@ -11,7 +11,7 @@ const ShmoozerCreateNewModal =({onClose, createNewShmoozer}: ShmoozerCreateNewMo
 
         const onSubmit = (newShmoozer: ShmoozerType) => {
             console.log("Submitting new shmoozer:", newShmoozer);
-            createNewShmoozer(newShmoozer);
+            createNewItem(newShmoozer);
             onClose();
         };
     
