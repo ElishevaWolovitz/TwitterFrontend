@@ -2,11 +2,12 @@ import type { ShmoozerType } from "../../types/shmoozer.types";
 import type { AxiosInstance } from "axios";
 
 export const printShmoozer = (shmoozer: ShmoozerType) => {
-    return (<>
+    const printable = <>
         <p>id: {shmoozer._id}</p>
         <p>shmoozer name: {shmoozer.shmoozerName}</p>
         <p>display name: {shmoozer.displayName}</p>
-    </>)
+    </>
+    return printable;
 }
 
 export const createNewShmoozer = async (
