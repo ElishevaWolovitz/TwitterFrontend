@@ -1,6 +1,6 @@
-import type { KibCreateNewModalProps } from "../KibCreateNewModal/types"
+import type { KibCreateNewModalProps } from "./types"
 import { useForm } from "react-hook-form"
-import type { KibType } from '../../types/kib.types'
+import type { KibType } from '../../../types/kib.types'
 
 const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
     const {

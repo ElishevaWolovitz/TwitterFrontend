@@ -6,7 +6,7 @@ import type { ShmoozerPageProps } from './types';
 import type { ShmoozerType } from '../../types/shmoozer.types';
 import CreateNewButton from '../../components/Button/CreateNewButton';
 import CreateNewModal from '../../components/Modal/CreateNewModal';
-import ShmoozerCreateNewModal from '../../ModalStructures/ShmoozerCreateNewModal';
+import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewModal';
 
 
 //Q:why did i have to make type for ShmoozerPageProp here instead of the api just being of type AxiosInstance? 

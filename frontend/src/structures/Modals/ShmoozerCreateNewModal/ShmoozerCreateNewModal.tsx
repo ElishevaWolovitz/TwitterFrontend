@@ -1,6 +1,6 @@
 import type { ShmoozerCreateNewModalProps } from "./types"
 import { useForm } from "react-hook-form"
-import type { ShmoozerType } from '../../types/shmoozer.types';
+import type { ShmoozerType } from '../../../types/shmoozer.types';
 
 const ShmoozerCreateNewModal =({onClose, createNewItem}: ShmoozerCreateNewModalProps) => {
     const {

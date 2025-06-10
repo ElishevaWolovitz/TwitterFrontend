@@ -1,4 +1,4 @@
-import type { ShmoozerType } from '../../types/shmoozer.types';
+import type { ShmoozerType } from '../../../types/shmoozer.types';
 
 export type ShmoozerCreateNewModalProps = {
     onClose: () => void;

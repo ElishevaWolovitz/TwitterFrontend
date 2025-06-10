@@ -1,5 +1,5 @@
 import type { KibEditModalProp } from './types';
-import type { KibType } from '../../types/kib.types'
+import type { KibType } from '../../../types/kib.types'
 import { useForm } from "react-hook-form";
 
 

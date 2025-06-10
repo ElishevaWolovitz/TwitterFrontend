@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
-import KibEditModal from '../../ModalStructures/KibEditModal';
+import KibEditModal from '../../structures/Modals/KibEditModal';
 import CreateNewButton from '../../components/Button/CreateNewButton';
 import CreateNewModal from '../../components/Modal/CreateNewModal';
-import KibCreateNewModal from '../../ModalStructures/KibCreateNewModal';
+import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
 import { printKib, editKib, deleteKib, filterKibs, createNewKib } from './functions';

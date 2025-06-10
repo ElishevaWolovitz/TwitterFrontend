@@ -1,4 +1,4 @@
-import type { KibType } from '../../types/kib.types'
+import type { KibType } from '../../../types/kib.types'
 
 export type KibCreateNewModalProps = {
     onClose: () => void;
