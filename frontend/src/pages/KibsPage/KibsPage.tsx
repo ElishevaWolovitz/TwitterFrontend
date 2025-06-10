@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
 import KibEditModal from '../../structures/Modals/KibEditModal';
+import PostCard from '../../components/Card/PostCard';
 import CreateNewButton from '../../components/Button/CreateNewButton';
 import CreateNewModal from '../../components/Modal/CreateNewModal';
 import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
