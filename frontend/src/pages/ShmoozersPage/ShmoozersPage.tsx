@@ -13,13 +13,10 @@ import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewMod
 // (when i did it was an error in the App where i put shmoozerpage component)
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
-  const [loading, setLoading] = useState(true)
   //change this .then and no unnamed functions
   useEffect(() => {
     api.get('/shmoozers').then((res) => {
-      setTimeout(()=> {
         setShmoozers(res.data.data)
-        setLoading(false);},2000);
     })
   }, [api]); 
 
@@ -38,7 +35,6 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
       <h1>Shmoozers Page</h1>
       <List 
         items={shmoozers}
-        loading={loading} 
         printItem={printShmoozer}
       />
       <CreateNewButton 
