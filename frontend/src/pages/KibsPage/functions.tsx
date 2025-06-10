@@ -3,13 +3,14 @@ import type { AxiosInstance } from "axios";
 
 export const printKib = (kib: KibType) => {
     const printable = <> 
-    <p>id: {kib._id} </p>
-    <p>kibName: {kib.kibName}</p>
-    <p>shmoozerId: {kib.shmoozerId}</p>
-    <p>text: {kib.text}</p>
-    {kib.media && (<p>media: {kib.media}</p>)}
-    {kib.likes && (<p>likes: {kib.likes}</p>)}
-    {kib.createdAt && (<p>created on: {kib.createdAt.toString()}</p>)}</>
+      <p>id: {kib._id} </p>
+      <p>kibName: {kib.kibName}</p>
+      <p>shmoozerId: {kib.shmoozerId}</p>
+      <p>text: {kib.text}</p>
+      {kib.media && (<p>media: {kib.media}</p>)}
+      <p>likes: {kib.likes}</p>
+      {kib.createdAt && (<p>created on: {kib.createdAt.toString()}</p>)}
+    </>
     return printable
 }
 

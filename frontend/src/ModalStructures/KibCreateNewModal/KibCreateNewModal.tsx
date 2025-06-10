@@ -59,7 +59,7 @@ const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
                     <input
                         type="number"
                         {...register("likes",
-                            {setValueAs: v => v === "" ? undefined : Number(v)}
+                            {setValueAs: v => v === "" ? 0 : Number(v)}
                         )}
                         placeholder="Number of Likes"
                     />
