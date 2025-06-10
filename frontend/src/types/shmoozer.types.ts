@@ -1,5 +1,5 @@
 export type ShmoozerType = { 
-    _id?: string;
+    _id: string;
     shmoozerName: string;
     displayName: string;
 }
