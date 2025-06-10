@@ -12,21 +12,21 @@ import { ToastContainer} from 'react-toastify';
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
+  const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
   useEffect(() => {
     api.get('/shmoozers').then((res) => {
         setShmoozers(res.data.data)
     })
   }, [api]); 
 
-
-  const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
+  const handleCreateNewShmoozer = (shmoozerDataToCreate: ShmoozerType) => {
+    createNewShmoozer(shmoozerDataToCreate, api, setShmoozers);
+  }
 
   const handleCreateNewClick = () => {
       setOpenCreateNewModal(true);
   };
-  const handleCreateNewShmoozer = (shmoozerDataToCreate: ShmoozerType) => {
-    createNewShmoozer(shmoozerDataToCreate, api, setShmoozers);
-  }
+
   return (
     <>
       <ToastContainer />
@@ -38,13 +38,12 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
       />
       <CreateNewButton 
         onClick={handleCreateNewClick}
-        />
-      <CreateNewModal
-        openModal={openCreateNewModal}
+      />
+      {openCreateNewModal && (<CreateNewModal
         setOpenModal={setOpenCreateNewModal}
         createNewItem={handleCreateNewShmoozer}
         children={ShmoozerCreateNewModal}
-      />
+      />)}
 
     </>
   )

@@ -48,12 +48,12 @@ const KibsPage = ({api}: KibPageProps) => {
       <CreateNewButton 
         onClick={handleCreateNewClick}
         />
-      <CreateNewModal
+      {openCreateNewModal && (<CreateNewModal
         openModal={openCreateNewModal}
         setOpenModal={setOpenCreateNewModal}
         createNewItem={handleCreateNewItem}
         children={KibCreateNewModal}
-      />
+      />)}
     </>
   )
 }
