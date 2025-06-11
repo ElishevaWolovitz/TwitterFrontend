@@ -1,6 +1,7 @@
 import type { KibEditModalProp } from './types';
 import type { KibType } from '../../../types/kib.types'
 import { useForm } from "react-hook-form";
+import { emptyToUndefined, emptyToZeroOrNumber } from "../functions";
 
 
 const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt, onClose, editItem}: KibEditModalProp) => {
@@ -19,7 +20,6 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
         }
     });
     const onSubmit = (kib: KibType) => {
-        console.log("Submitting edited kib:", kib);
         editItem(kib);
         onClose();
     };
@@ -62,7 +62,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                 <input
                     type="text"
                     {...register("media",
-                        {setValueAs: v => v === "" ? undefined : v}
+                        {setValueAs: emptyToUndefined}
                     )}
                     placeholder="Media URL"
                 />
@@ -72,7 +72,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                 <input
                     type="number"
                     {...register("likes",
-                        {setValueAs: v => v === "" ? undefined : Number(v)}
+                        {setValueAs: emptyToZeroOrNumber}
                     )}
                     placeholder="Number of Likes"
                 />
