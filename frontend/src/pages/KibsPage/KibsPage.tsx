@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 
 const KibsPage = ({api}: KibPageProps) => {
   const [kibs, setKibs] = useState<KibType[]>([]);
+  const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
   useEffect(() => {
     api.get('/kibs').then((res) => {
       setKibs(res.data.data);
@@ -24,7 +25,6 @@ const KibsPage = ({api}: KibPageProps) => {
   const handleEditKib = (kib: KibType) => {
     editKib(kib, api, setKibs)
   };
-  const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
 
   const handleCreateNewClick = () => {
       setOpenCreateNewModal(true);
@@ -49,7 +49,6 @@ const KibsPage = ({api}: KibPageProps) => {
         onClick={handleCreateNewClick}
         />
       {openCreateNewModal && (<CreateNewModal
-        openModal={openCreateNewModal}
         setOpenModal={setOpenCreateNewModal}
         createNewItem={handleCreateNewItem}
         children={KibCreateNewModal}
