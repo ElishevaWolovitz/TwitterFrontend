@@ -1,5 +1,5 @@
 import { map } from "lodash/fp";
-import NavListOption from "./NavOption";
+import NavListOption from "./NavListOption";
 import { navItems, classes } from "./const";
 import type { NavLinkType } from './types'
 import BackButton from "../Button/BackButton";
