@@ -1,37 +1,18 @@
 import { map } from "lodash/fp";
-import { NavLink } from "react-router-dom";
-import { navItems } from "./const";
-import { createUseStyles } from 'react-jss';
-import { Styles } from './styles';
+import NavListOption from "./NavOption";
+import { navItems, classes } from "./const";
 import type { NavLinkType } from './types'
 import BackButton from "../Button/BackButton";
 
 
-const useStyles = createUseStyles(Styles);
 
 const Navbar = () => {
-    const classes = useStyles();
-    const nameActiveLink = ({isActive}:{isActive: boolean}) => {
-        return `${classes.link} ${isActive ? classes.active : ""}`;
-    }
-    //should nav option be a different component?
-    const createNavListOption = (navItem: NavLinkType) => {
-        return (
-            <li key={navItem.to}>
-                <NavLink
-                    to={navItem.to}
-                    className={nameActiveLink}
-                >
-                    {navItem.label}
-                </NavLink> 
-            </li>
-        )
-    }
+    const handleMapNavItems = (navItem: NavLinkType) => <NavListOption to={navItem.to} label={navItem.label}/>;
     return (
     <nav className={classes.nav}>
         <ul className={classes.ul}>
             <li><BackButton /></li>
-            {map(createNavListOption)(navItems)}
+            {map(handleMapNavItems)(navItems)}
         </ul>
     </nav>
     );
