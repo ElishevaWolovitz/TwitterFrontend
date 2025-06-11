@@ -1,10 +1,8 @@
 import { map } from "lodash/fp";
 import NavListOption from "./NavListOption";
-import { navItems, classes } from "./const";
-import type { NavLinkType } from './types'
 import BackButton from "../Button/BackButton";
-
-
+import type { NavLinkType } from './types'
+import { navItems, classes } from "./const";
 
 const Navbar = () => {
     const handleMapNavItems = (navItem: NavLinkType) => <NavListOption to={navItem.to} label={navItem.label}/>;
