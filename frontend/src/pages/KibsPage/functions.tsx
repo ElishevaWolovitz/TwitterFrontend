@@ -1,7 +1,7 @@
 import type { AxiosInstance } from "axios";
-import type { KibType } from "../../types/kib.types";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import type { KibType } from "../../types/kib.types";
 
 export const printKib = (kib: KibType) => {
     const printable = <> 
@@ -20,19 +20,18 @@ export const editKib = async (
   editedKib: KibType,
   api: AxiosInstance,
   setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
-    try {
-      //next line is to send a kib without the _id field as this should not be part of th ejson sent in the patch
-      const { _id, ...kibData } = editedKib;
-      await api.patch(`/kibs/${editedKib._id}`, kibData);
-      // 2. Update local state
-      setKibs(prev => prev.map(kib => kib._id === editedKib._id ? { ...kib, ...editedKib } : kib));
-      console.log("Kib updated!");
-      toast.success("Kib updated successfully!");
-    } catch (error) {
-        console.log("Failed to update kib.");
-        console.error(error);
+    const { _id, ...kibData } = editedKib;
+    const updatedKibResults = await api.patch(`/kibs/${editedKib._id}`, kibData).catch((error) => {
+        console.error("Error updating kib:", error)
         toast.error("Failed to update kib. Please try again.");
-    }
+      });
+    if (updatedKibResults)
+      {
+        //convert prev.map to functional programing style
+        setKibs(prev => prev.map(kib => kib._id === editedKib._id ? { ...kib, ...editedKib } : kib));
+        toast.success("Kib updated successfully!");
+        console.log("Kib updated!");
+      }
 };
 
 
@@ -40,14 +39,14 @@ export const deleteKib = async (
   kibToDelete: KibType,
   api: AxiosInstance,
   setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
-  try {
-  await api.delete(`/kibs/${kibToDelete._id}`);
-  setKibs(prev => prev.filter(kib => kib._id !== kibToDelete._id));
-  console.log(`Deleted kib with id: ${kibToDelete._id}`);
-  toast.success("Kib deleted successfully!");
-  } catch (error) {
-    console.error("Failed to delete kib:", error);
+  const deleteKibResults = await api.delete(`/kibs/${kibToDelete._id}`).catch((error) => {
+    console.error("Error deleting kib:", error);
     toast.error("Failed to delete kib. Please try again.");
+  });
+  if(deleteKibResults) {
+    setKibs(prev => prev.filter(kib => kib._id !== kibToDelete._id));
+    console.log(`Deleted kib with id: ${kibToDelete._id}`);
+    toast.success("Kib deleted successfully!");
   }
 };
 
@@ -60,14 +59,14 @@ export const createNewKib = async (
   kibDataToCreate: KibType,
   api: AxiosInstance,
   setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
-  try {
-    const response = await api.post("/kibs", kibDataToCreate);
-    const newKib = response.data.data; 
-    setKibs(prev => [...prev, newKib]);
-    console.log("New kib created:", newKib);
-    toast.success("New kib created successfully!");
-  } catch (error) {
-    console.error("Failed to create new kib:", error);
+    const createMewKibResults = await api.post("/kibs", kibDataToCreate).catch((error) => {
+    console.error("Error creating new kib:", error);
     toast.error("Failed to create new kib. Please try again.");
+  });
+  if(createMewKibResults){
+      const newKib = createMewKibResults.data.data; 
+      setKibs(prev => [...prev, newKib]);
+      console.log("New kib created:", newKib);
+      toast.success("New kib created successfully!");
   }
 }

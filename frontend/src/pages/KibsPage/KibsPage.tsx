@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
 import KibEditModal from '../../structures/Modals/KibEditModal';
@@ -8,7 +9,6 @@ import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
 import { printKib, editKib, deleteKib, filterKibs, createNewKib } from './functions';
-import { ToastContainer } from 'react-toastify';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -48,11 +48,13 @@ const KibsPage = ({api}: KibPageProps) => {
       <CreateNewButton 
         onClick={handleCreateNewClick}
         />
-      {openCreateNewModal && (<CreateNewModal
-        setOpenModal={setOpenCreateNewModal}
-        createNewItem={handleCreateNewItem}
-        children={KibCreateNewModal}
-      />)}
+      {openCreateNewModal && (
+        <CreateNewModal
+          setOpenModal={setOpenCreateNewModal}
+          createNewItem={handleCreateNewItem}
+          children={KibCreateNewModal}
+        />
+      )}
     </>
   )
 }
