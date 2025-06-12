@@ -8,18 +8,30 @@ import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewMod
 import type { ShmoozerPageProps } from './types';
 import type { ShmoozerType } from '../../types/shmoozer.types';
 import { printShmoozer, createNewShmoozer } from './functions';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Spinner from '../../components/Spinner';
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   //State defintions
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
   const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
-  
+  const [loading, setLoading] = useState(true);
+  const fetchShmoozers = async () => {
+    setLoading(true);
+    setTimeout( async() => {
+    const getShmoozerResults = await api.get('/shmoozers');
+      if (getShmoozerResults) {
+        setShmoozers(getShmoozerResults.data.data);
+        setLoading(false);
+      }
+    },1500);
+  };
   //Fetch shmoozers from API
   useEffect(() => {
-    api.get('/shmoozers').then((res) => {
-        setShmoozers(res.data.data)
-    })
+    fetchShmoozers().catch((error) => {
+      toast.error("Error fetching shmoozers:", error);
+    });
   }, [api]); 
 
   //Helper functions that need to be defined in the component scope
@@ -36,19 +48,26 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
       <ToastContainer />
       <Navbar />
       <h1>Shmoozers Page</h1>
-      <List 
-        items={shmoozers}
-        printItem={printShmoozer}
-      />
-      <CreateNewButton 
-        onClick={handleCreateNewClick}
-      />
-      {openCreateNewModal && (
-        <CreateNewModal
-          setOpenModal={setOpenCreateNewModal}
-          createNewItem={handleCreateNewShmoozer}
-          children={ShmoozerCreateNewModal}
-        />
+      {loading ? 
+        (
+          <Spinner />
+        ) : ( 
+        <>
+          <List 
+            items={shmoozers}
+            printItem={printShmoozer}
+          />
+          <CreateNewButton 
+            onClick={handleCreateNewClick}
+          />
+          {openCreateNewModal && (
+            <CreateNewModal
+              setOpenModal={setOpenCreateNewModal}
+              createNewItem={handleCreateNewShmoozer}
+              children={ShmoozerCreateNewModal}
+            />
+          )}
+        </>
       )}
 
     </>

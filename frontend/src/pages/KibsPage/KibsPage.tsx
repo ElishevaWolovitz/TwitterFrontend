@@ -9,15 +9,24 @@ import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
 import { printKib, editKib, deleteKib, filterKibs, createNewKib } from './functions';
+import Spinner from '../../components/Spinner';
 
 
 const KibsPage = ({api}: KibPageProps) => {
   const [kibs, setKibs] = useState<KibType[]>([]);
   const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    api.get('/kibs').then((res) => {
-      setKibs(res.data.data);
-    });
+    setLoading(true);
+    setTimeout(() => {
+      api.get('/kibs')
+        .then((res) => {
+          setKibs(res.data.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+      }, 1500);
   }, [api]);
   const handleDeleteKib = (kib: KibType) => {
     deleteKib(kib, api, setKibs);
@@ -37,24 +46,28 @@ const KibsPage = ({api}: KibPageProps) => {
       <ToastContainer autoClose={2000}/>
       <Navbar />
       <h1>Kibs Page</h1>
-      <SearchBar 
-        items={kibs}
-        filterItems={filterKibs}
-        printItem={printKib}
-        editItem={handleEditKib}
-        deleteItem={handleDeleteKib}
-        ModalChildrenComp={KibEditModal}
-        />
-      <CreateNewButton 
-        onClick={handleCreateNewClick}
-        />
-      {openCreateNewModal && (
-        <CreateNewModal
-          setOpenModal={setOpenCreateNewModal}
-          createNewItem={handleCreateNewItem}
-          children={KibCreateNewModal}
-        />
-      )}
+      {loading ? (<Spinner />) : (
+        <>
+          <SearchBar 
+            items={kibs}
+            filterItems={filterKibs}
+            printItem={printKib}
+            editItem={handleEditKib}
+            deleteItem={handleDeleteKib}
+            ModalChildrenComp={KibEditModal}
+            />
+          <CreateNewButton 
+            onClick={handleCreateNewClick}
+            />
+          {openCreateNewModal && (
+            <CreateNewModal
+              setOpenModal={setOpenCreateNewModal}
+              createNewItem={handleCreateNewItem}
+              children={KibCreateNewModal}
+            />
+          )}
+        </>
+    )}
     </>
   )
 }
