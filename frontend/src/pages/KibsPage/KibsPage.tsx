@@ -48,14 +48,6 @@ const KibsPage = ({api}: KibPageProps) => {
       <h1>Kibs Page</h1>
       {loading ? (<Spinner />) : (
         <>
-          <SearchBar 
-            items={kibs}
-            filterItems={filterKibs}
-            printItem={printKib}
-            editItem={handleEditKib}
-            deleteItem={handleDeleteKib}
-            ModalChildrenComp={KibEditModal}
-            />
           <CreateNewButton 
             onClick={handleCreateNewClick}
             />
@@ -66,6 +58,14 @@ const KibsPage = ({api}: KibPageProps) => {
               children={KibCreateNewModal}
             />
           )}
+          <SearchBar 
+            items={kibs}
+            filterItems={filterKibs}
+            printItem={printKib}
+            editItem={handleEditKib}
+            deleteItem={handleDeleteKib}
+            ModalChildrenComp={KibEditModal}
+            />
         </>
     )}
     </>

@@ -8,7 +8,7 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, ModalCh
     const classes = Styles();
     const handleMap = (item: T) => {
         return (
-            <>
+            <li className={classes.listItem}>
                 <Card
                     post={item}
                     printItem={printItem}
@@ -16,14 +16,15 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, ModalCh
                     deleteItem={deleteItem}
                     ModalChildrenComp={ModalChildrenComp}
                 />
-        </>)
+            </li>
+        )
     }
     return (
-        <>
+        <div className={classes.feed}>
             <ul className={classes.list}>
                 {map(handleMap)(items)}
             </ul>
-        </>
+        </div>
     )
 }
 

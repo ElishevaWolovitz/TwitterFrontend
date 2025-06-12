@@ -1,22 +1,28 @@
 import { createUseStyles } from 'react-jss';
 
 export const Styles = createUseStyles({
-  list: {
-    listStyle: 'none',
-    padding: 0,
-    margin: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 24, // space between cards
-    width: '100%',
-    maxWidth: 600,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  listItem: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-  },
+    feed: {
+        background: '#f5f8fa',
+        minHeight: '100vh',
+        padding: '32px 0',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    list: {
+        listStyle: 'none',
+        padding: 0,
+        margin: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 24,
+        width: '100%',
+        maxWidth: 600,
+    },
+    listItem: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+    },
 });
