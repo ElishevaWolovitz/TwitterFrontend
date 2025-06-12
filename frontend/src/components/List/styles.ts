@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useListStyles = createUseStyles({
+export const Styles = createUseStyles({
   list: {
     listStyle: 'none',
     padding: 0,

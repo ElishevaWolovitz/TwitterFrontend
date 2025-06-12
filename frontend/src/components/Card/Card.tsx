@@ -2,12 +2,12 @@ import EditModal from '../Modal/EditModal';
 import EditButton from '../Button/EditButton';
 import DeleteButton from '../Button/DeleteButton';
 import type { CardProps } from './types';
-import { useCardStyles } from './styles';
+import { Styles } from './styles';
 import { useState } from 'react';
 
 
 const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalChildrenComp }: CardProps<T>) => {
-  const classes = useCardStyles()
+  const classes = Styles()
   const [openEditModal, setOpenEditModal] = useState(false);
   const [itemToEdit, setItemToEdit] = useState<T | null>(null);
 

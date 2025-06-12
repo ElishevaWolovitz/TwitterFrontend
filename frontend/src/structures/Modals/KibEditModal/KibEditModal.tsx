@@ -1,10 +1,14 @@
+import SubmitButton from '../../../components/Button/SubmitButton';
+import { useKibEditModalStyles } from './styles';
 import type { KibEditModalProp } from './types';
 import type { KibType } from '../../../types/kib.types'
 import { useForm } from "react-hook-form";
 import { emptyToUndefined, emptyToZeroOrNumber } from "../functions";
+import CancelButton from '../../../components/Button/CancelButton';
 
 
 const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt, onClose, editItem}: KibEditModalProp) => {
+    const classes = useKibEditModalStyles();
     const {
         register,
         handleSubmit,             
@@ -25,13 +29,13 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
             <h3> Edit Kib </h3>
             <div>
                 <input type="hidden" {...register("_id")} value={_id} />
                 <strong>ID:</strong> {_id}
             </div>
-            <label>
+            <label className={classes.label}>
                 Kib Name:
                 <input
                     type="text"
@@ -40,7 +44,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                 />
                 {errors.kibName && <span>This field is required</span>}
             </label>
-            <label>
+            <label className={classes.label}>
                 Shmoozer ID:
                 <input
                     type="text"
@@ -49,7 +53,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                 />
                 {errors.shmoozerId && <span>This field is required</span>}
             </label>
-            <label>
+            <label className={classes.label}>
                 Text:
                 <textarea
                     {...register("text", { required: true })}
@@ -57,7 +61,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                 />
                 {errors.text && <span>This field is required</span>}
             </label>
-            <label>
+            <label className={classes.label}>
                 Media:
                 <input
                     type="text"
@@ -67,26 +71,33 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                     placeholder="Media URL"
                 />
             </label>
-            <label>
-                Likes:
-                <input
-                    type="number"
-                    {...register("likes",
-                        {setValueAs: emptyToZeroOrNumber}
-                    )}
-                    placeholder="Number of Likes"
-                />
-            </label>
-            <label> 
-                Created At:
-                <input
-                    type="text"
-                    {...register("createdAt")}
-                    placeholder="Creation Date"
-                    disabled
-                />
-            </label>
-            <button type="submit">Submit</button>
+            <div className={classes.footer}>
+                <div className={classes.likes}>
+                    <label>
+                        Likes:
+                        <input
+                            type="number"
+                            {...register("likes",
+                                {setValueAs: emptyToZeroOrNumber}
+                            )}
+                            placeholder="Number of Likes"
+                        />
+                    </label>
+                   </div>
+                <div className={classes.created}>
+                    <label> 
+                        Created At:
+                        <input
+                            type="text"
+                            {...register("createdAt")}
+                            placeholder="Creation Date"
+                            disabled
+                        />
+                    </label>
+                </div>
+            </div>
+            <SubmitButton />
+            <CancelButton onClick={onClose}/>
         </form>
     )
 }

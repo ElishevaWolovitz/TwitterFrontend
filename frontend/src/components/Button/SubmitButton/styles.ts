@@ -3,10 +3,10 @@ import { createUseStyles } from 'react-jss';
 export const Styles = createUseStyles({
   button: {
     cursor: 'pointer',
-    padding: '0.6rem 1.5rem',
+    padding: '0.5rem 1.5rem',
     background: 'linear-gradient(90deg, #0984e3 0%, #74b9ff 100%)',
     border: 'none',
-    borderRadius: '24px',
+    borderRadius: '20px',
     fontSize: '1.1rem',
     color: '#fff',
     fontWeight: 600,

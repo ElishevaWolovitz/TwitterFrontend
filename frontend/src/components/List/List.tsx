@@ -1,10 +1,11 @@
 import type { ListProps } from "./types";
 import { map } from "lodash/fp";
 import Card from '../Card';
-
+import { Styles } from './styles';
 
 
 const List = <T extends object>({items, printItem, editItem, deleteItem, ModalChildrenComp}: ListProps<T>) => {
+    const classes = Styles();
     const handleMap = (item: T) => {
         return (
             <>
@@ -19,7 +20,7 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, ModalCh
     }
     return (
         <>
-            <ul>
+            <ul className={classes.list}>
                 {map(handleMap)(items)}
             </ul>
         </>

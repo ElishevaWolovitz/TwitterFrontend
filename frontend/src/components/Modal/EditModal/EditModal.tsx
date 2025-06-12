@@ -6,7 +6,6 @@ const EditModal = <T extends object>({openModal, setOpenModal, editItem, childre
             {openModal && (
                 <div>
                     <ChildComponent {...itemToEdit} onClose={()=> setOpenModal(false)} editItem={editItem}/>
-                    <button type="button" onClick={() => setOpenModal(false)}>Cancel</button>
                 </div>
             )}
         </>

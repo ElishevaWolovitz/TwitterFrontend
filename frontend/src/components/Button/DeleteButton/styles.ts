@@ -1,4 +1,6 @@
-export const Styles = {
+import { createUseStyles } from 'react-jss';
+
+export const Styles = createUseStyles({
   button: {
     cursor: 'pointer',
     padding: '0.5rem 1.2rem',
@@ -30,4 +32,4 @@ export const Styles = {
       outlineOffset: '2px',
     },
   },
-};
+});

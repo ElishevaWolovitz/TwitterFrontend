@@ -1,11 +1,9 @@
-import { createUseStyles } from 'react-jss';
 import { Styles } from './styles';
 import type { DeleteButtonProps } from "./types";
 
-const useStyles = createUseStyles(Styles);
 
 const DeleteButton =({onClick}: DeleteButtonProps) => {
-    const classes = useStyles();
+    const classes = Styles();
     return (
         <button type="button" className={classes.button} onClick={onClick}>
             Delete
