@@ -2,6 +2,8 @@ import type { KibCreateNewModalProps } from "./types"
 import { useForm } from "react-hook-form"
 import type { KibType } from '../../../types/kib.types'
 import { emptyToUndefined, emptyToZeroOrNumber } from "../functions"
+import SubmitButton from '../../../components/Button/SubmitButton';
+import CancelButton from '../../../components/Button/CancelButton';
 
 const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
     const {
@@ -73,7 +75,8 @@ const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
                     placeholder="Creation Date"
                 />
             </label>
-            <button type="submit">Submit</button>
+            <SubmitButton />
+            <CancelButton onClick={onClose}/>
         </form>
     )
 }

@@ -1,6 +1,8 @@
 import type { ShmoozerCreateNewModalProps } from "./types"
 import { useForm } from "react-hook-form"
 import type { ShmoozerType } from '../../../types/shmoozer.types';
+import SubmitButton from "../../../components/Button/SubmitButton";
+import CancelButton from '../../../components/Button/CancelButton';
 
 const ShmoozerCreateNewModal =({onClose, createNewItem}: ShmoozerCreateNewModalProps) => {
     const {
@@ -36,7 +38,8 @@ const ShmoozerCreateNewModal =({onClose, createNewItem}: ShmoozerCreateNewModalP
                     />
                     {errors.displayName && <span>This field is required</span>}
                 </label>
-                <button type="submit">Submit</button>
+                <SubmitButton />
+                <CancelButton onClick={onClose}/>
             </form>
         )
 }
