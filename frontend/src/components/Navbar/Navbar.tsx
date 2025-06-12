@@ -14,7 +14,7 @@ const Navbar = () => {
     const nameActiveLink = ({isActive}:{isActive: boolean}) => {
         return `${classes.link} ${isActive ? classes.active : ""}`;
     }
-    //should nav option be a different component?
+    //should nav option be a different component? was giving me problems when i tried
     const createNavListOption = (navItem: NavLinkType) => {
         return (
             <li key={navItem.to}>
