@@ -1,15 +1,14 @@
-import type { NavLinkType } from '../types';
 import { NavLink } from "react-router-dom";
-import { nameActiveLink } from '../const';
+import type { NavListOptionProps } from './types';
 
-const NavListOption = (navItem: NavLinkType) => {
+const NavListOption = ({to, label, nameActiveLink}: NavListOptionProps) => {
         return (
-            <li key={navItem.to}>
+            <li key={to}>
                 <NavLink
-                    to={navItem.to}
+                    to={to}
                     className={nameActiveLink}
                 >
-                    {navItem.label}
+                    {label}
                 </NavLink> 
             </li>
         )

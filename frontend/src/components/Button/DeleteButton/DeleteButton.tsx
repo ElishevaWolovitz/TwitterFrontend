@@ -2,7 +2,7 @@ import type { DeleteButtonProps } from "./types";
 
 const DeleteButton =({onClick}: DeleteButtonProps) => {
     return (
-        <button type="button" onClick={onClick} aria-label="Delete">
+        <button type="button" onClick={onClick}>
             Delete
         </button>
     )

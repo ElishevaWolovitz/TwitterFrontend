@@ -1,7 +1,9 @@
+import EditModal from '../Modal/EditModal';
+import EditButton from '../Button/EditButton';
+import DeleteButton from '../Button/DeleteButton';
 import type { CardProps } from './types';
 import { useCardStyles } from './styles';
 import { useState } from 'react';
-import EditModal from '../Modal/EditModal';
 
 
 const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalChildrenComp }: CardProps<T>) => {
@@ -18,14 +20,10 @@ const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalCh
     <div className={classes.card}>
       {printItem(post)}
       {editItem && (
-        <button type="button" className={classes.button} onClick={() => handleEditClick(post)}>
-          Edit
-        </button>
+        <EditButton onClick={() => handleEditClick(post)} />
       )}
       {deleteItem && (
-        <button type="button" className={classes.button} onClick={() => deleteItem(post)}>
-          Delete
-        </button>
+        <DeleteButton onClick={() => deleteItem(post)} />
       )}
       {openEditModal && itemToEdit && ModalChildrenComp && editItem && (
         <EditModal 
