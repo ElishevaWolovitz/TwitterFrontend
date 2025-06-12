@@ -2,18 +2,12 @@ import type { AxiosInstance } from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import type { KibType } from "../../types/kib.types";
+import PrintKib from '../../structures/Print/PrintKib';
 
 export const printKib = (kib: KibType) => {
-    const printable = <> 
-      <p>id: {kib._id} </p>
-      <p>kibName: {kib.kibName}</p>
-      <p>shmoozerId: {kib.shmoozerId}</p>
-      <p>text: {kib.text}</p>
-      {kib.media && (<p>media: {kib.media}</p>)}
-      <p>likes: {kib.likes}</p>
-      {kib.createdAt && (<p>created on: {kib.createdAt.toString()}</p>)}
-    </>
-    return printable
+  return (
+    <PrintKib kib={kib} />
+  );
 }
 
 export const editKib = async (
