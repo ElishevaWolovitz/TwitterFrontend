@@ -53,10 +53,6 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
           <Spinner />
         ) : ( 
         <>
-          <List 
-            items={shmoozers}
-            printItem={printShmoozer}
-          />
           <CreateNewButton 
             onClick={handleCreateNewClick}
           />
@@ -67,6 +63,10 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
               children={ShmoozerCreateNewModal}
             />
           )}
+          <List 
+            items={shmoozers}
+            printItem={printShmoozer}
+          />
         </>
       )}
 

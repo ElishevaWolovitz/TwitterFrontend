@@ -19,12 +19,14 @@ const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalCh
   return (
     <div className={classes.card}>
       {printItem(post)}
-      {editItem && (
-        <EditButton onClick={() => handleEditClick(post)} />
-      )}
-      {deleteItem && (
-        <DeleteButton onClick={() => deleteItem(post)} />
-      )}
+      <div className={classes.buttonGroup}>
+        {editItem && (
+          <EditButton onClick={() => handleEditClick(post)} />
+        )}
+        {deleteItem && (
+          <DeleteButton onClick={() => deleteItem(post)} />
+        )}
+      </div>
       {openEditModal && itemToEdit && ModalChildrenComp && editItem && (
         <EditModal 
             openModal={openEditModal} 

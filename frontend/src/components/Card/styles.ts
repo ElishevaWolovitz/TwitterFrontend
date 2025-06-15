@@ -19,4 +19,10 @@ export const Styles = createUseStyles({
       boxShadow: '0 8px 32px rgba(9,132,227,0.13)',
     },
   },
+  buttonGroup: {
+    display: 'flex',
+    gap: '0.75rem',
+    marginTop: '0.5rem',
+    alignItems: 'center',
+  },
 });
