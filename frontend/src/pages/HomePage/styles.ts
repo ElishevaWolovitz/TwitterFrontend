@@ -26,4 +26,37 @@ export const Styles = {
     gap: "1.5rem",
     marginTop: "2rem",
   },
+  navbarOverride: {
+    background: 'none !important',
+    border: 'none !important',
+    boxShadow: 'none !important',
+    padding: 0,
+    margin: 0,
+    '& nav': {
+      background: 'none !important',
+      border: 'none !important',
+      boxShadow: 'none !important',
+      padding: 0,
+      margin: 0,
+    },
+    '& ul': {
+      flexDirection: 'column',
+      gap: '0.5rem',
+      alignItems: 'flex-start',
+      padding: 0,
+      margin: 0,
+    },
+    '& a': {
+      borderRadius: 8,
+      padding: '0.5rem 1rem',
+      fontSize: '1.1rem',
+      color: '#1da1f2',
+      background: 'none',
+      fontWeight: 500,
+      '&:hover': {
+        background: '#e8f5fe',
+        color: '#0d8ddb',
+      },
+    },
+  },
 };

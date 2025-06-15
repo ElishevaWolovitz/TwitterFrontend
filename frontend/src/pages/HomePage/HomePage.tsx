@@ -11,7 +11,9 @@ const HomePage = () => {
         <h1 className={classes.title}>Home Page</h1>
         <div className={classes.subtitle}>Welcome to Kibitz - your Twitter-inspired app!</div>
         <div className={classes.buttonGroup}>
-          <Navbar />
+          <div className={classes.navbarOverride}>
+            <Navbar />
+          </div>
         </div>
       </div>
     </>
