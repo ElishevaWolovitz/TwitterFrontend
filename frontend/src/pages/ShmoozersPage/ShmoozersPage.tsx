@@ -25,7 +25,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
         setShmoozers(getShmoozerResults.data.data);
         setLoading(false);
       }
-    },1500);
+    },1000);
   };
   //Fetch shmoozers from API
   useEffect(() => {

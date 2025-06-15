@@ -43,7 +43,7 @@ const KibsPage = ({api}: KibPageProps) => {
   }
   return (
     <>
-      <ToastContainer autoClose={2000}/>
+      <ToastContainer autoClose={1000}/>
       <Navbar />
       <h1>Kibs Page</h1>
       {loading ? (<Spinner />) : (
