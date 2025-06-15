@@ -11,7 +11,7 @@ app.use(cors({
   origin: 'http://localhost:5173', 
   credentials: true,             
 }));
-const PORT: number = parseInt(process.env.PORT || '5000', 10); 
+const PORT: number = parseInt(process.env.PORT || '3000', 10); 
 const mongoDBURL: string = process.env.MONGODB_URL || 'mongodb://localhost:27017/KibitzDB';
 
 app.use(express.json());
