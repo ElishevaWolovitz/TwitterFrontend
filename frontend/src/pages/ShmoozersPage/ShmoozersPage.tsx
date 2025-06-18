@@ -11,12 +11,14 @@ import { printShmoozer, createNewShmoozer } from './functions';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from '../../components/Spinner';
+import { Styles } from './styles';
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   //State defintions
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
   const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const classes = Styles();
   const fetchShmoozers = async () => {
     setLoading(true);
     setTimeout( async() => {
@@ -47,29 +49,32 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
     <>
       <ToastContainer />
       <Navbar />
-      <h1>Shmoozers Page</h1>
-      {loading ? 
-        (
-          <Spinner />
-        ) : ( 
-        <>
-          <CreateNewButton 
-            onClick={handleCreateNewClick}
-          />
-          {openCreateNewModal && (
-            <CreateNewModal
-              setOpenModal={setOpenCreateNewModal}
-              createNewItem={handleCreateNewShmoozer}
-              children={ShmoozerCreateNewModal}
-            />
-          )}
-          <List 
-            items={shmoozers}
-            printItem={printShmoozer}
-          />
-        </>
-      )}
-
+      <div className={classes.pageContainer}>
+        <div className={classes.headerContainer}>
+          <h1 className={classes.title}>Shmoozers Page</h1>
+        </div>
+          {loading ? 
+            (
+              <Spinner />
+            ) : ( 
+            <>
+              <List 
+                items={shmoozers}
+                printItem={printShmoozer}
+              />
+              <CreateNewButton 
+                onClick={handleCreateNewClick}
+              />
+              {openCreateNewModal && (
+                <CreateNewModal
+                  setOpenModal={setOpenCreateNewModal}
+                  createNewItem={handleCreateNewShmoozer}
+                  children={ShmoozerCreateNewModal}
+                />
+              )}
+          </>
+        )}
+      </div>
     </>
   )
 }

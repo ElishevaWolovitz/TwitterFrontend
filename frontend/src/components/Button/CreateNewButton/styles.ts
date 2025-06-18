@@ -15,19 +15,11 @@ export const Styles = createUseStyles({
     transition: 'background 0.2s, box-shadow 0.2s, transform 0.1s',
     outline: 'none',
     margin: '0.5rem 0',
-    '&:hover': {
-      background: 'linear-gradient(90deg, #74b9ff 0%, #0984e3 100%)',
-      boxShadow: '0 4px 16px rgba(9,132,227,0.15)',
-      transform: 'translateY(-2px) scale(1.03)',
-    },
-    '&:active': {
-      background: '#0984e3',
-      boxShadow: '0 2px 4px rgba(9,132,227,0.08)',
-      transform: 'scale(0.98)',
-    },
-    '&:focus-visible': {
-      outline: '2px solid #0984e3',
-      outlineOffset: '2px',
-    },
+   '&:hover, &:active': {
+    background: '#fff',
+    color: '#1da1f2',
+    border: '2px solid #1da1f2',
+    boxShadow: '0 4px 16px rgba(29,161,242,0.15)',
+   },
   },
 });

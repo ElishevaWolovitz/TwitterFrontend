@@ -7,7 +7,7 @@ export const Styles = createUseStyles({
     padding: 24,
     background: '#fff',
     boxShadow: '0 4px 16px rgba(9,132,227,0.07)',
-    marginBottom: 28,
+
     maxWidth: 540,
     width: '100%',
     transition: 'box-shadow 0.18s',
