@@ -14,11 +14,12 @@ import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
-  //State defintions
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
   const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
   const [loading, setLoading] = useState(true);
+
   const classes = Styles();
+
   const fetchShmoozers = async () => {
     setLoading(true);
     setTimeout( async() => {
@@ -29,14 +30,14 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
       }
     },1000);
   };
-  //Fetch shmoozers from API
+
   useEffect(() => {
     fetchShmoozers().catch((error) => {
       toast.error("Error fetching shmoozers:", error);
     });
   }, [api]); 
 
-  //Helper functions that need to be defined in the component scope
+
   const handleCreateNewShmoozer = (shmoozerDataToCreate: ShmoozerType) => {
     createNewShmoozer(shmoozerDataToCreate, api, setShmoozers);
   }
@@ -53,25 +54,25 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
         <div className={classes.headerContainer}>
           <h1 className={classes.title}>Shmoozers Page</h1>
         </div>
-          {loading ? 
-            (
-              <Spinner />
-            ) : ( 
-            <>
-              <List 
-                items={shmoozers}
-                printItem={printShmoozer}
+        {loading ? 
+          (
+            <Spinner />
+          ) : ( 
+          <>
+            <List 
+              items={shmoozers}
+              printItem={printShmoozer}
+            />
+            <CreateNewButton 
+              onClick={handleCreateNewClick}
+            />
+            {openCreateNewModal && (
+              <CreateNewModal
+                setOpenModal={setOpenCreateNewModal}
+                createNewItem={handleCreateNewShmoozer}
+                children={ShmoozerCreateNewModal}
               />
-              <CreateNewButton 
-                onClick={handleCreateNewClick}
-              />
-              {openCreateNewModal && (
-                <CreateNewModal
-                  setOpenModal={setOpenCreateNewModal}
-                  createNewItem={handleCreateNewShmoozer}
-                  children={ShmoozerCreateNewModal}
-                />
-              )}
+            )}
           </>
         )}
       </div>

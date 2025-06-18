@@ -8,7 +8,7 @@ import CreateNewModal from '../../components/Modal/CreateNewModal';
 import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
-import { printKib, editKib, deleteKib, filterKibs, createNewKib } from './functions';
+import { printKib, editKib, deleteKib, filterKibsByName, createNewKib } from './functions';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 
@@ -55,7 +55,7 @@ const KibsPage = ({api}: KibPageProps) => {
           <>
             <SearchBar 
               items={kibs}
-              filterItems={filterKibs}
+              filterItems={filterKibsByName}
               printItem={printKib}
               editItem={handleEditKib}
               deleteItem={handleDeleteKib}
