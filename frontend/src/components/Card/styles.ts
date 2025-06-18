@@ -10,13 +10,13 @@ export const Styles = createUseStyles({
     marginBottom: 28,
     maxWidth: 540,
     width: '100%',
-    transition: 'transform 0.18s, box-shadow 0.18s',
+    transition: 'box-shadow 0.18s',
     display: 'flex',
     flexDirection: 'column',
     gap: 16,
     '&:hover': {
-      transform: 'translateY(-3px) scale(1.01)',
-      boxShadow: '0 8px 32px rgba(9,132,227,0.13)',
+      boxShadow: '0 8px 40px 4px rgba(9,132,227,0.13)',
+      border: '1.5px solid #1da1f2',
     },
   },
   buttonGroup: {

@@ -65,7 +65,7 @@ export const Styles = createUseStyles({
     gap: '1rem',
     marginTop: '1rem',
   },
-    label: {
+  label: {
     fontWeight: 500,
     color: '#14171a',
     marginBottom: '0.25rem',

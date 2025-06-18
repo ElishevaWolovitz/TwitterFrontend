@@ -93,7 +93,7 @@ const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
                     </div>
                 </form>
             </div>
-        </div>
+       </div>
     )
 }
 
