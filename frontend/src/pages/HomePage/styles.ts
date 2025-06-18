@@ -1,6 +1,6 @@
+import { createUseStyles } from 'react-jss';
 
-
-export const Styles = {
+export const Styles = createUseStyles({
   container: {
     display: "flex",
     flexDirection: "column",
@@ -24,39 +24,13 @@ export const Styles = {
   buttonGroup: {
     display: "flex",
     gap: "1.5rem",
-    marginTop: "2rem",
+    marginTop: "rem",
   },
   navbarOverride: {
-    background: 'none !important',
-    border: 'none !important',
-    boxShadow: 'none !important',
-    padding: 0,
-    margin: 0,
-    '& nav': {
-      background: 'none !important',
-      border: 'none !important',
-      boxShadow: 'none !important',
-      padding: 0,
-      margin: 0,
-    },
-    '& ul': {
-      flexDirection: 'column',
-      gap: '0.5rem',
-      alignItems: 'flex-start',
-      padding: 0,
-      margin: 0,
-    },
-    '& a': {
-      borderRadius: 8,
-      padding: '0.5rem 1rem',
-      fontSize: '1.1rem',
-      color: '#1da1f2',
-      background: 'none',
-      fontWeight: 500,
-      '&:hover': {
-        background: '#e8f5fe',
-        color: '#0d8ddb',
-      },
-    },
+    borderRadius: 24,
+    overflow: 'hidden', 
+    background: '#f7f9fa', 
+    boxShadow: '0 2px 8px rgba(29,161,242,0.08)',
+    border: '1px solid #657786',
   },
-};
+});
