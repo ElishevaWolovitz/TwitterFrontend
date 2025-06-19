@@ -10,6 +10,9 @@ const SearchBar =<T extends object>({items, filterItems, printItem, editItem, de
     const classes = Styles(); 
     //Q: is it okay for me to run filterItems here with query before an input has been inputted? because it is going to be rerended? 
     const filteredItems = filterItems(items, query); 
+    const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+    };
     return (
         <>
             <div className={classes.searchBarContainer}>
@@ -19,7 +22,7 @@ const SearchBar =<T extends object>({items, filterItems, printItem, editItem, de
                     type="text"
                     placeholder="Search kib names..."
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={handleQueryChange}
                 />
             </div>
             <List 

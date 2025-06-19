@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import type { KibType } from "../../types/kib.types";
 import PrintKib from '../../structures/Print/PrintKib';
 import { handleError } from "../../functions";
-import { map, filter } from 'lodash/fp';
+import { map, filter, includes } from 'lodash/fp';
 
 export const printKib = (kib: KibType) => {
   return <PrintKib kib={kib} />;
@@ -44,16 +44,20 @@ export const deleteKib = async (
   setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
   const deleteKibResults = await api.delete(`/kibs/${kibToDelete._id}`).catch(handleError("Failed to delete kib. Please try again."));
   if(deleteKibResults) {
-    setKibs(handleSetKibsForFilterById(kibToDelete));
+    setKibs(handleFilterKibsById(kibToDelete));
     console.log(`Deleted kib with id: ${kibToDelete._id}`);
     toast.success("Kib deleted successfully!");
   }
 };
+const findKibNameIncludesQuery = (query: string) => (kib: KibType) =>
+  includes(query)(kib.kibName);
 
 export const filterKibsByName = (kibs: KibType[], query: string) => {
   if (!query) return kibs;
-  return kibs.filter(kib => kib.kibName.includes(query));
+  return filter(findKibNameIncludesQuery(query))(kibs);
 }
+
+const appendKib = (newKib: KibType) => (kibs: KibType[]) => [...kibs, newKib];
 
 export const createNewKib = async (
   kibDataToCreate: KibType,
@@ -62,7 +66,7 @@ export const createNewKib = async (
     const createMewKibResults = await api.post("/kibs", kibDataToCreate).catch(handleError("Failed to create new kib. Please try again."));
   if(createMewKibResults){
       const newKib = createMewKibResults.data.data; 
-      setKibs(prev => [...prev, newKib]);
+      setKibs(appendKib(newKib));
       console.log("New kib created:", newKib);
       toast.success("New kib created successfully!");
   }

@@ -8,10 +8,9 @@ import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewMod
 import type { ShmoozerPageProps } from './types';
 import type { ShmoozerType } from '../../types/shmoozer.types';
 import { printShmoozer, createNewShmoozer } from './functions';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
+import { handleError } from "../../functions";
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
@@ -32,9 +31,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   };
 
   useEffect(() => {
-    fetchShmoozers().catch((error) => {
-      toast.error("Error fetching shmoozers:", error);
-    });
+    fetchShmoozers().catch(handleError("Error fetching shmoozers"));
   }, [api]); 
 
 

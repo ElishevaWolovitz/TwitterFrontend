@@ -5,6 +5,8 @@ import { emptyToUndefined, emptyToZeroOrNumber } from "../functions"
 import SubmitButton from '../../../components/Button/SubmitButton';
 import CancelButton from '../../../components/Button/CancelButton';
 import { Styles } from './styles'
+import { onSubmit } from "./functions";
+
 const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
     const classes = Styles();
     const {
@@ -13,10 +15,6 @@ const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
             formState: { errors } 
         } = useForm<KibType>();
 
-    const onSubmit = (kib: KibType) => {
-        createNewItem(kib);
-        onClose(); //need to be in this file correct? becuase of the onClose call?
-    };
     return (
         <div className={classes.modalOverlay}>
             <div className={classes.modalContent}>
@@ -24,7 +22,7 @@ const KibCreateNewModal =({onClose, createNewItem}: KibCreateNewModalProps) => {
                 ×
                 </button>
                 <div className={classes.header}>Create New Shmoozer</div>
-                <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+                <form className={classes.form} onSubmit={handleSubmit(onSubmit({onClose, createNewItem}))}>
                     <label className={classes.label}>
                         Kib Name:
                         <input

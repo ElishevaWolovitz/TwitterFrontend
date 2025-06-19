@@ -1,13 +1,14 @@
 import SubmitButton from '../../../components/Button/SubmitButton';
 import { useKibEditModalStyles } from './styles';
-import type { KibEditModalProp } from './types';
+import type { KibEditModalProps } from './types';
 import type { KibType } from '../../../types/kib.types'
 import { useForm } from "react-hook-form";
 import { emptyToUndefined, emptyToZeroOrNumber } from "../functions";
 import CancelButton from '../../../components/Button/CancelButton';
+import { onSubmit } from './functions';
 
 
-const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt, onClose, editItem}: KibEditModalProp) => {
+const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt, onClose, editItem}: KibEditModalProps) => {
     const classes = useKibEditModalStyles();
     const {
         register,
@@ -23,10 +24,6 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
             createdAt: createdAt 
         }
     });
-    const onSubmit = (kib: KibType) => {
-        editItem(kib);
-        onClose();
-    };
 
     return (
         <div className={classes.overlay}>
@@ -35,7 +32,7 @@ const KibEditModal = ({ _id, kibName, shmoozerId, text, media, likes, createdAt,
                 ×
                 </button>
                 <div className={classes.header}>Edit Kib</div>
-                <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+                <form onSubmit={handleSubmit(onSubmit({onClose, editItem}))} className={classes.form}>
                     <div>
                         <input type="hidden" {...register("_id")} value={_id} />
                         <strong>ID:</strong> {_id}
