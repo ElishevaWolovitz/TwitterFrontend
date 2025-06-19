@@ -37,14 +37,6 @@ card: {
     lineHeight: 1.7,
     fontWeight: 400,
   },
-  media: {
-    width: '100%',
-    maxHeight: 260,
-    objectFit: 'cover',
-    borderRadius: 12,
-    margin: '8px 0',
-    background: '#f0f0f0',
-  },
   footer: {
     display: 'flex',
     justifyContent: 'space-between',

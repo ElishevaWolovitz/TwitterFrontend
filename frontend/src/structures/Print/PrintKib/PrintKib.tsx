@@ -1,6 +1,7 @@
 import { Styles } from "./styles";
 import type { PrintKibProps } from "./types";
 
+
 const PrintKib = ({ kib }: PrintKibProps) => {
     const classes = Styles();
     return (
@@ -11,7 +12,9 @@ const PrintKib = ({ kib }: PrintKibProps) => {
         </div>
         <div className={classes.text}>{kib.text}</div>
         {kib.media && (
-            <img src={kib.media} alt="media" className={classes.media} />
+            <a href={kib.media} target="_blank" rel="noopener noreferrer">
+                {kib.media}
+            </a>
         )}
         <div className={classes.footer}>
             <span className={classes.likes}>👍 {kib.likes}</span>
