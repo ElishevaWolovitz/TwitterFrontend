@@ -12,7 +12,7 @@ const ReturnToLastPageButton = () => {
     };
     return (
         <button className={classes.button} type="button" onClick={handleClick}>
-            &#8592;
+            ←
         </button>
     );
 };
