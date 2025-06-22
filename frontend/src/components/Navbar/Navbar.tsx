@@ -1,5 +1,4 @@
 import { map } from "lodash/fp";
-import { NavLink } from "react-router-dom";
 import { navItems } from "./const";
 import { createUseStyles } from 'react-jss';
 import { Styles } from './styles';
