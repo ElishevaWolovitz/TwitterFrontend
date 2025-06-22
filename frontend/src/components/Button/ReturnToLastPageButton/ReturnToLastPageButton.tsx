@@ -4,7 +4,7 @@ import { Styles } from "./styles";
 
 const useStyles = createUseStyles(Styles);
 
-const BackButton = () => {
+const ReturnToLastPageButton = () => {
     const classes = useStyles();
     const navigate = useNavigate();
     const handleClick = () => {
@@ -17,4 +17,4 @@ const BackButton = () => {
     );
 };
 
-export { BackButton };
+export { ReturnToLastPageButton };

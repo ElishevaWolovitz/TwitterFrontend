@@ -4,7 +4,7 @@ import { navItems } from "./const";
 import { createUseStyles } from 'react-jss';
 import { Styles } from './styles';
 import type { NavLinkType } from './types'
-import BackButton from "../Button/BackButton";
+import ReturnToLastPageButton from "../Button/ReturnToLastPageButton";
 
 
 const useStyles = createUseStyles(Styles);
@@ -30,7 +30,7 @@ const Navbar = () => {
     return (
     <nav className={classes.nav}>
         <ul className={classes.ul}>
-            <li><BackButton /></li>
+            <li><ReturnToLastPageButton /></li>
             {map(createNavListOption)(navItems)}
         </ul>
     </nav>
