@@ -11,7 +11,7 @@ const useStyles = createUseStyles(Styles);
 
 const Navbar = () => {
     const classes = useStyles();
-    const nameActiveLink = ({isActive}:{isActive: boolean}) => {
+    const currentURL = ({isActive}:{isActive: boolean}) => {
         return `${classes.link} ${isActive ? classes.active : ""}`;
     }
     //should nav option be a different component? was giving me problems when i tried
@@ -20,7 +20,7 @@ const Navbar = () => {
             <li key={navItem.to}>
                 <NavLink
                     to={navItem.to}
-                    className={nameActiveLink}
+                    className={currentURL}
                 >
                     {navItem.label}
                 </NavLink> 
