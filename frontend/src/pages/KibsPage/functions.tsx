@@ -63,9 +63,9 @@ export const createNewKib = async (
   kibDataToCreate: KibType,
   api: AxiosInstance,
   setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
-    const createMewKibResults = await api.post("/kibs", kibDataToCreate).catch(handleError("Failed to create new kib. Please try again."));
-  if(createMewKibResults){
-      const newKib = createMewKibResults.data.data; 
+    const createNewKibResults = await api.post("/kibs", kibDataToCreate).catch(handleError("Failed to create new kib. Please try again."));
+  if(createNewKibResults){
+      const newKib = createNewKibResults.data.data; 
       setKibs(appendKib(newKib));
       console.log("New kib created:", newKib);
       toast.success("New kib created successfully!");
