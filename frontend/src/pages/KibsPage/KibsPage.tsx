@@ -11,6 +11,7 @@ import type { KibType } from '../../types/kib.types';
 import { getKibs, printKib, editKib, deleteKib, filterKibsByName, createNewKib } from './functions';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
+import { toastifyTimer } from './const';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -36,7 +37,7 @@ const KibsPage = ({api}: KibPageProps) => {
   }
   return (
     <>
-      <ToastContainer autoClose={1000}/>
+      <ToastContainer autoClose={toastifyTimer}/>
       <Navbar />
       <div className={classes.pageContainer}>
         <div className={classes.headerContainer}>
