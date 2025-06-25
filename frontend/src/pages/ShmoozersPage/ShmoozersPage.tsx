@@ -7,10 +7,10 @@ import CreateNewModal from '../../components/Modal/CreateNewModal';
 import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewModal';
 import type { ShmoozerPageProps } from './types';
 import type { ShmoozerType } from '../../types/shmoozer.types';
-import { printShmoozer, createNewShmoozer } from './functions';
+import { getShmoozers, printShmoozer, createNewShmoozer } from './functions';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
-import { handleError } from "../../functions";
+import { toastifyTimer } from './consts'
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
@@ -19,19 +19,8 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
 
   const classes = Styles();
 
-  const fetchShmoozers = async () => {
-    setLoading(true);
-    setTimeout( async() => {
-    const getShmoozerResults = await api.get('/shmoozers');
-      if (getShmoozerResults) {
-        setShmoozers(getShmoozerResults.data.data);
-        setLoading(false);
-      }
-    },1000);
-  };
-
   useEffect(() => {
-    fetchShmoozers().catch(handleError("Error fetching shmoozers"));
+    getShmoozers(setShmoozers, setLoading, api)
   }, [api]); 
 
 
@@ -45,7 +34,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
 
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose={toastifyTimer}/>
       <Navbar />
       <div className={classes.pageContainer}>
         <div className={classes.headerContainer}>

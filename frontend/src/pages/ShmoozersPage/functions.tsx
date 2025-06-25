@@ -5,6 +5,18 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrintShmoozer from '../../structures/Print/PrintShmoozer';
 import { handleError } from "../../functions";
 
+export const getShmoozers = async(
+  setShmoozers: React.Dispatch<React.SetStateAction<ShmoozerType[]>>,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  api: AxiosInstance) => {
+    setLoading(false);
+    const shmoozers = await api.get('/shmoozers').catch(
+      handleError("Failed to get shmoozers from database"))
+    if(shmoozers)
+      setShmoozers(shmoozers.data.data);
+      setLoading(false);
+}
+
 export const printShmoozer = (shmoozer: ShmoozerType) => {
   return (<PrintShmoozer shmoozer={shmoozer} />);
 }

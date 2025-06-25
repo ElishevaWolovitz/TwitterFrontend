@@ -10,10 +10,9 @@ const useStyles = createUseStyles(Styles);
 
 const Navbar = () => {
     const classes = useStyles();
-    const currentURL = ({isActive}:{isActive: boolean}) => {
-        return `${classes.link} ${isActive ? classes.active : ""}`;
-    }
-    //should nav option be a different component? was giving me problems when i tried
+    const currentURL = ({isActive}:{isActive: boolean}) => 
+        `${classes.link} ${isActive ? classes.active : ""}`;
+    
     const handleNavbarOptions = (navItem: NavLinkType) => {
         return (
             <NavbarOption 

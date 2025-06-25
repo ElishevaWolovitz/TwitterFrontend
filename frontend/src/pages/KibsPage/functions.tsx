@@ -11,7 +11,7 @@ export const getKibs = async(
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   api: AxiosInstance) => {
     setLoading(false);
-    const kibs = await api.get('kibs').catch(handleError("Failed to get kibs from database"))
+    const kibs = await api.get('/kibs').catch(handleError("Failed to get kibs from database"))
     if(kibs)
       setKibs(kibs.data.data);
       setLoading(false);
