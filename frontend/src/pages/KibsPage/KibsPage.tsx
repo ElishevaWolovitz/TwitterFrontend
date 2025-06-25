@@ -6,6 +6,7 @@ import KibEditModal from '../../structures/Modals/KibEditModal';
 import CreateNewButton from '../../components/Button/CreateNewButton';
 import CreateNewModal from '../../components/Modal/CreateNewModal';
 import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
+import List from '../../components/List';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
 import { getKibs, printKib, editKib, deleteKib, filterKibsByName, createNewKib } from './functions';
@@ -18,6 +19,7 @@ const KibsPage = ({api}: KibPageProps) => {
   const [kibs, setKibs] = useState<KibType[]>([]);
   const [openCreateNewModal, setOpenCreateNewModal] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [filteredKibs, setFilteredKibs] = useState<KibType[]>([])
   const classes = Styles();
   useEffect(() => {
     getKibs(setKibs, setLoading, api);
@@ -48,11 +50,15 @@ const KibsPage = ({api}: KibPageProps) => {
             <SearchBar 
               items={kibs}
               filterItems={filterKibsByName}
-              printItem={printKib}
-              editItem={handleEditKib}
-              deleteItem={handleDeleteKib}
-              ModalChildrenComp={KibEditModal}
+              setFilteredItems={setFilteredKibs}
               />
+            <List 
+                items={filteredKibs}
+                printItem={printKib}
+                editItem={handleEditKib}
+                deleteItem={handleDeleteKib}
+                ModalChildrenComp={KibEditModal}
+            />
             <CreateNewButton 
               onClick={handleCreateNewClick}
               />

@@ -1,38 +1,30 @@
-import { useState } from "react"; 
+import { useState, useEffect } from "react"; 
 import type { SearchBarProps } from "./types";
-import List from '../List';
 import { Styles } from './styles';
 
 
 
-const SearchBar =<T extends object>({items, filterItems, printItem, editItem, deleteItem, ModalChildrenComp}: SearchBarProps<T>) => {
+const SearchBar =<T extends object>({items, filterItems, setFilteredItems}: SearchBarProps<T>) => {
     const [query, setQuery] = useState('');
     const classes = Styles(); 
-    //Q: is it okay for me to run filterItems here with query before an input has been inputted? because it is going to be rerended? 
     const filteredItems = filterItems(items, query); 
+    useEffect(() => {
+        setFilteredItems(filteredItems);
+    }, [filteredItems, setFilteredItems]);
     const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
     };
     return (
-        <>
-            <div className={classes.searchBarContainer}>
-                <span className={classes.icon}>🔍</span>
-                <input
-                    className={classes.input}
-                    type="text"
-                    placeholder="Search kib names..."
-                    value={query}
-                    onChange={handleQueryChange}
-                />
-            </div>
-            <List 
-                items={filteredItems}
-                printItem={printItem}
-                editItem={editItem}
-                deleteItem={deleteItem}
-                ModalChildrenComp={ModalChildrenComp}
+        <div className={classes.searchBarContainer}>
+            <span className={classes.icon}>🔍</span>
+            <input
+                className={classes.input}
+                type="text"
+                placeholder="Search..."
+                value={query}
+                onChange={handleQueryChange}
             />
-        </>
+        </div>
     )
 }
 
