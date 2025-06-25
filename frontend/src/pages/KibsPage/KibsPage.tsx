@@ -8,7 +8,7 @@ import CreateNewModal from '../../components/Modal/CreateNewModal';
 import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
-import { printKib, editKib, deleteKib, filterKibsByName, createNewKib } from './functions';
+import { getKibs, printKib, editKib, deleteKib, filterKibsByName, createNewKib } from './functions';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 
@@ -19,16 +19,7 @@ const KibsPage = ({api}: KibPageProps) => {
   const [loading, setLoading] = useState(true);
   const classes = Styles();
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      api.get('/kibs')
-        .then((res) => {
-          setKibs(res.data.data);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-      }, 1500);
+    getKibs(setKibs, setLoading, api);
   }, [api]);
   const handleDeleteKib = (kib: KibType) => {
     deleteKib(kib, api, setKibs);

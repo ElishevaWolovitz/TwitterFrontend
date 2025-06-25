@@ -6,6 +6,17 @@ import PrintKib from '../../structures/Print/PrintKib';
 import { handleError } from "../../functions";
 import { map, filter, includes } from 'lodash/fp';
 
+export const getKibs = async(
+  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>,
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  api: AxiosInstance) => {
+    setLoading(false);
+    const kibs = await api.get('kibs').catch(handleError("Failed to get kibs from database"))
+    if(kibs)
+      setKibs(kibs.data.data);
+      setLoading(false);
+}
+
 export const printKib = (kib: KibType) => {
   return <PrintKib kib={kib} />;
 }
