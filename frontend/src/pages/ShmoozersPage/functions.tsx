@@ -25,9 +25,9 @@ const appendShmoozer = (newShmoozer: ShmoozerType) => (shmoozers: ShmoozerType[]
   [...shmoozers, newShmoozer]
 
 export const createNewShmoozer = async (
-  shmoozerDataToCreate: ShmoozerType,
   api: AxiosInstance,
-  setShmoozers: React.Dispatch<React.SetStateAction<ShmoozerType[]>>) => {
+  setShmoozers: React.Dispatch<React.SetStateAction<ShmoozerType[]>>,
+  shmoozerDataToCreate: ShmoozerType) => {
     const createNewShmoozerResults = await api.post("/shmoozers", shmoozerDataToCreate)
     .catch(handleError("Failed to create new shmoozer. Please try again."));
   if (createNewShmoozerResults) {

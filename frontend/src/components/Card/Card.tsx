@@ -4,6 +4,7 @@ import DeleteButton from '../Button/DeleteButton';
 import type { CardProps } from './types';
 import { Styles } from './styles';
 import { useState } from 'react';
+import { partial } from 'lodash/fp';
 
 
 const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalChildrenComp }: CardProps<T>) => {
@@ -21,10 +22,10 @@ const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalCh
       {printItem(post)}
       <div className={classes.buttonGroup}>
         {editItem && (
-          <EditButton onClick={() => handleEditClick(post)} />
+          <EditButton onClick={partial(handleEditClick, [post])} />
         )}
         {deleteItem && (
-          <DeleteButton onClick={() => deleteItem(post)} />
+          <DeleteButton onClick={partial(deleteItem, [post])} />
         )}
       </div>
       {openEditModal && itemToEdit && ModalChildrenComp && editItem && (

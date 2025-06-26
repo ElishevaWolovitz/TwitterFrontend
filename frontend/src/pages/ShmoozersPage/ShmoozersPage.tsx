@@ -11,6 +11,7 @@ import { getShmoozers, printShmoozer, createNewShmoozer } from './functions';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 import { toastifyTimer } from './consts'
+import { partial } from 'lodash/fp';
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
@@ -22,16 +23,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   useEffect(() => {
     getShmoozers(setShmoozers, setLoading, api)
   }, [api]); 
-
-
-  const handleCreateNewShmoozer = (shmoozerDataToCreate: ShmoozerType) => {
-    createNewShmoozer(shmoozerDataToCreate, api, setShmoozers);
-  }
-
-  const handleCreateNewClick = () => {
-      setOpenCreateNewModal(true);
-  };
-
+  
   return (
     <>
       <ToastContainer autoClose={toastifyTimer}/>
@@ -50,12 +42,12 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
               printItem={printShmoozer}
             />
             <CreateNewButton 
-              onClick={handleCreateNewClick}
+              onClick={partial(setOpenCreateNewModal, [true])}
             />
             {openCreateNewModal && (
               <CreateNewModal
                 setOpenModal={setOpenCreateNewModal}
-                createNewItem={handleCreateNewShmoozer}
+                createNewItem={partial(createNewShmoozer, [api, setShmoozers])}
                 children={ShmoozerCreateNewModal}
               />
             )}

@@ -24,20 +24,17 @@ export const printKib = (kib: KibType) => {
 const findAndEditKib = (editedKib: KibType) => (kib: KibType) =>
   kib._id === editedKib._id ? { ...kib, ...editedKib } : kib;
 
-const handleMapKibs = (editedKib: KibType) =>
-  map(findAndEditKib(editedKib));
-
 export const editKib = async (
-  editedKib: KibType,
   api: AxiosInstance,
-  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
+  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>,
+  editedKib: KibType,) => {
     const { _id, ...kibData } = editedKib;
     const updatedKibResults = await api.patch(`/kibs/${editedKib._id}`, kibData)
       .catch(handleError("Failed to update kib. Please try again."));
     if (updatedKibResults)
       {
         //convert prev.map to functional programing style
-        setKibs(handleMapKibs(editedKib));
+        setKibs(map(findAndEditKib(editedKib)));
         toast.success("Kib updated successfully!");
         console.log("Kib updated!");
       }
@@ -46,16 +43,14 @@ export const editKib = async (
 const findKibToDeleteById = (kibToDelete: KibType) => (kib: KibType) =>
   kib._id !== kibToDelete._id
 
-const handleFilterKibsById = (kibToDelete: KibType) => 
-  filter(findKibToDeleteById(kibToDelete));
-
 export const deleteKib = async (
-  kibToDelete: KibType,
   api: AxiosInstance,
-  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
+  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>,
+  kibs: KibType[],
+  kibToDelete: KibType) => {
   const deleteKibResults = await api.delete(`/kibs/${kibToDelete._id}`).catch(handleError("Failed to delete kib. Please try again."));
   if(deleteKibResults) {
-    setKibs(handleFilterKibsById(kibToDelete));
+    setKibs(filter(findKibToDeleteById(kibToDelete))(kibs));
     console.log(`Deleted kib with id: ${kibToDelete._id}`);
     toast.success("Kib deleted successfully!");
   }
@@ -71,9 +66,9 @@ export const filterKibsByName = (kibs: KibType[], query: string) => {
 const appendKib = (newKib: KibType) => (kibs: KibType[]) => [...kibs, newKib];
 
 export const createNewKib = async (
-  kibDataToCreate: KibType,
   api: AxiosInstance,
-  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>) => {
+  setKibs: React.Dispatch<React.SetStateAction<KibType[]>>,
+  kibDataToCreate: KibType) => {
     const createNewKibResults = await api.post("/kibs", kibDataToCreate).catch(handleError("Failed to create new kib. Please try again."));
   if(createNewKibResults){
       const newKib = createNewKibResults.data.data; 

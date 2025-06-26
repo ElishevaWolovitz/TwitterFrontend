@@ -13,6 +13,7 @@ import { getKibs, printKib, editKib, deleteKib, filterKibsByName, createNewKib }
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 import { toastifyTimer } from './const';
+import { partial } from 'lodash/fp';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -24,19 +25,7 @@ const KibsPage = ({api}: KibPageProps) => {
   useEffect(() => {
     getKibs(setKibs, setLoading, api);
   }, [api]);
-  const handleDeleteKib = (kib: KibType) => {
-    deleteKib(kib, api, setKibs);
-  };
-  const handleEditKib = (kib: KibType) => {
-    editKib(kib, api, setKibs)
-  };
 
-  const handleCreateNewClick = () => {
-      setOpenCreateNewModal(true);
-  };
-  const handleCreateNewItem = (kibDataToCreate: KibType) => {
-    createNewKib(kibDataToCreate, api, setKibs);
-  }
   return (
     <>
       <ToastContainer autoClose={toastifyTimer}/>
@@ -55,17 +44,17 @@ const KibsPage = ({api}: KibPageProps) => {
             <List 
                 items={filteredKibs}
                 printItem={printKib}
-                editItem={handleEditKib}
-                deleteItem={handleDeleteKib}
+                editItem={partial(editKib,[api, setKibs])}
+                deleteItem={partial( deleteKib, [api, setKibs, kibs])}
                 ModalChildrenComp={KibEditModal}
             />
             <CreateNewButton 
-              onClick={handleCreateNewClick}
+              onClick={partial(setOpenCreateNewModal, [true])}
               />
             {openCreateNewModal && (
               <CreateNewModal
                 setOpenModal={setOpenCreateNewModal}
-                createNewItem={handleCreateNewItem}
+                createNewItem={partial(createNewKib,[api, setKibs])}
                 children={KibCreateNewModal}
               />
             )}

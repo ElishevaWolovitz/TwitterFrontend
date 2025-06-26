@@ -11,7 +11,7 @@ const SearchBar =<T extends object>({items, filterItems, setFilteredItems}: Sear
     useEffect(() => {
         setFilteredItems(filteredItems);
     }, [filteredItems, setFilteredItems]);
-    const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSetQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
     };
     return (
@@ -22,7 +22,7 @@ const SearchBar =<T extends object>({items, filterItems, setFilteredItems}: Sear
                 type="text"
                 placeholder="Search..."
                 value={query}
-                onChange={handleQueryChange}
+                onChange={handleSetQuery}
             />
         </div>
     )

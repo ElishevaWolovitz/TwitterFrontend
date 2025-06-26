@@ -6,7 +6,7 @@ import { Styles } from './styles';
 
 const List = <T extends object>({items, printItem, editItem, deleteItem, ModalChildrenComp}: ListProps<T>) => {
     const classes = Styles();
-    const handleMap = (item: T) => {
+    const createListItems = (item: T) => {
         return (
             <li className={classes.listItem}>
                 <Card
@@ -22,7 +22,7 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, ModalCh
     return (
         <div className={classes.feed}>
             <ul className={classes.list}>
-                {map(handleMap)(items)}
+                {map(createListItems)(items)}
             </ul>
         </div>
     )

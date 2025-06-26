@@ -8,7 +8,9 @@ const PrintKib = ({ kib }: PrintKibProps) => {
         <>
         <div className={classes.header}>
             <span className={classes.kibName}>{kib.kibName}</span>
-            <span className={classes.shmoozerId}>@shmoozer{kib.shmoozerId}</span>
+            <span className={classes.shmoozerId}>
+                @shmoozer
+            {kib.shmoozerId}</span>
         </div>
         <div className={classes.text}>{kib.text}</div>
         {kib.media && (
@@ -18,7 +20,11 @@ const PrintKib = ({ kib }: PrintKibProps) => {
         )}
         <div className={classes.footer}>
             <span className={classes.likes}>👍 {kib.likes}</span>
-            {kib.createdAt && (<span className={classes.created}> created:{kib.createdAt.toString()} </span>)}
+            {kib.createdAt && 
+                (<span className={classes.created}> 
+                    created:{kib.createdAt.toString()} 
+                </span>)
+            }
         </div>
         <span className={classes.id}>Kib ID: {kib._id}</span>
         </>
