@@ -22,11 +22,13 @@ const Navbar = () => {
             />
         )
     }
+    const navItemsJSX = map(handleNavbarOptions)(navItems)
+
     return (
     <nav className={classes.nav}>
         <ul className={classes.ul}>
             <li><ReturnToLastPageButton /></li>
-            {map(handleNavbarOptions)(navItems)}
+            {navItemsJSX}
         </ul>
     </nav>
     );
