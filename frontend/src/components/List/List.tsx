@@ -19,6 +19,8 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, ModalCh
             </li>
         )
     }
+
+    
     return (
         <div className={classes.feed}>
             <ul className={classes.list}>

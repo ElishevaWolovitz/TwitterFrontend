@@ -23,7 +23,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   useEffect(() => {
     getShmoozers(setShmoozers, setLoading, api)
   }, [api]); 
-  
+
   return (
     <>
       <ToastContainer autoClose={toastifyTimer}/>
@@ -37,7 +37,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
             <Spinner />
           ) : ( 
           <>
-            <List 
+            <List
               items={shmoozers}
               printItem={printShmoozer}
             />
