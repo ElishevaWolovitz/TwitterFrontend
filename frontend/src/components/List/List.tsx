@@ -20,11 +20,11 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, ModalCh
         )
     }
 
-    
+    const listItemsJSX = map(createListItems)(items)
     return (
         <div className={classes.feed}>
             <ul className={classes.list}>
-                {map(createListItems)(items)}
+                {listItemsJSX}
             </ul>
         </div>
     )
