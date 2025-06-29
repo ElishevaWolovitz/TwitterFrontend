@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { ToastContainer} from 'react-toastify';
 import Navbar from '../../components/Navbar';
 import List from '../../components/List';
-import CreateNewModal from '../../components/Modal/CreateNewModal';
 import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewModal';
 import type { ShmoozerPageProps } from './types';
 import type { ShmoozerType } from '../../types/shmoozer.types';
@@ -48,10 +47,9 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
               Create New Shmoozer
             </button>
             {openCreateNewModal && (
-              <CreateNewModal
-                setOpenModal={setOpenCreateNewModal}
+              <ShmoozerCreateNewModal 
+                onClose={partial(setOpenCreateNewModal, [false])}  
                 createNewItem={partial(createNewShmoozer, [api, setShmoozers])}
-                children={ShmoozerCreateNewModal}
               />
             )}
           </>

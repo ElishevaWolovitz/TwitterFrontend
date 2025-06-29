@@ -3,7 +3,6 @@ import { ToastContainer } from 'react-toastify';
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
 import KibEditModal from '../../structures/Modals/KibEditModal';
-import CreateNewModal from '../../components/Modal/CreateNewModal';
 import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import List from '../../components/List';
 import type { KibPageProps } from './types';
@@ -56,10 +55,9 @@ const KibsPage = ({api}: KibPageProps) => {
               Create New Kib
             </button>
             {openCreateNewModal && (
-              <CreateNewModal
-                setOpenModal={setOpenCreateNewModal}
-                createNewItem={partial(createNewKib,[api, setKibs])}
-                children={KibCreateNewModal}
+              <KibCreateNewModal
+                onClose={partial(setOpenCreateNewModal, [false])}
+                createNewItem={partial(createNewKib, [api, setKibs])}
               />
             )}
           </>
