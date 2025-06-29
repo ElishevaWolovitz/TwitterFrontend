@@ -7,12 +7,13 @@ import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import List from '../../components/List';
 import type { KibPageProps } from './types';
 import type { KibType } from '../../types/kib.types';
-import { getKibs, printKib, editKib, deleteKib, filterKibsByName, createNewKib } from './functions';
+import { getKibs, editKib, deleteKib, filterKibsByName, createNewKib } from './functions';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 import { toastifyTimer } from './const';
 import { partial } from 'lodash/fp';
 import { CreateNewItemButtonStyles } from '../../components/Button/CreateNewItemButton/styles';
+import PrintKib from '../../structures/Print/PrintKib';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -44,7 +45,7 @@ const KibsPage = ({api}: KibPageProps) => {
               />
             <List 
                 items={filteredKibs}
-                printItem={printKib}
+                ItemPrint={PrintKib}
                 editItem={partial(editKib,[api, setKibs])}
                 deleteItem={partial( deleteKib, [api, setKibs, kibs])}
                 EditItemModal={KibEditModal}

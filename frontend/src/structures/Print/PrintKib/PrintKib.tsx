@@ -2,31 +2,31 @@ import { Styles } from "./styles";
 import type { PrintKibProps } from "./types";
 
 
-const PrintKib = ({ kib }: PrintKibProps) => {
+const PrintKib = ({ item }: PrintKibProps) => {
     const classes = Styles();
     return (
         <>
         <div className={classes.header}>
-            <span className={classes.kibName}>{kib.kibName}</span>
+            <span className={classes.kibName}>{item.kibName}</span>
             <span className={classes.shmoozerId}>
                 @shmoozer
-            {kib.shmoozerId}</span>
+            {item.shmoozerId}</span>
         </div>
-        <div className={classes.text}>{kib.text}</div>
-        {kib.media && (
-            <a href={kib.media} target="_blank" rel="noopener noreferrer">
-                {kib.media}
+        <div className={classes.text}>{item.text}</div>
+        {item.media && (
+            <a href={item.media} target="_blank" rel="noopener noreferrer">
+                {item.media}
             </a>
         )}
         <div className={classes.footer}>
-            <span className={classes.likes}>👍 {kib.likes}</span>
-            {kib.createdAt && 
+            <span className={classes.likes}>👍 {item.likes}</span>
+            {item.createdAt && 
                 (<span className={classes.created}> 
-                    created:{kib.createdAt.toString()} 
+                    created:{item.createdAt.toString()} 
                 </span>)
             }
         </div>
-        <span className={classes.id}>Kib ID: {kib._id}</span>
+        <span className={classes.id}>Kib ID: {item._id}</span>
         </>
     )
 }

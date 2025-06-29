@@ -5,12 +5,13 @@ import List from '../../components/List';
 import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewModal';
 import type { ShmoozerPageProps } from './types';
 import type { ShmoozerType } from '../../types/shmoozer.types';
-import { getShmoozers, printShmoozer, createNewShmoozer } from './functions';
+import { getShmoozers, createNewShmoozer } from './functions';
 import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 import { toastifyTimer } from './consts'
 import { partial } from 'lodash/fp';
 import { CreateNewItemButtonStyles } from '../../components/Button/CreateNewItemButton/styles';
+import PrintShmoozer from '../../structures/Print/PrintShmoozer';
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
@@ -39,7 +40,7 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
           <>
             <List
               items={shmoozers}
-              printItem={printShmoozer}
+              ItemPrint={PrintShmoozer}
             />
             <button type="button"
               className={createNewItemButtonClasses.button}

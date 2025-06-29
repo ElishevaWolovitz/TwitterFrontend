@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { partial } from 'lodash/fp';
 
 
-const Card = <T extends object>({ post, printItem, editItem, deleteItem, EditItemModal }: CardProps<T>) => {
+const Card = <T extends object>({ item, ItemPrint, editItem, deleteItem, EditItemModal }: CardProps<T>) => {
   const classes = Styles()
   const [openEditModal, setOpenEditModal] = useState(false);
   const [itemToEdit, setItemToEdit] = useState<T | null>(null);
@@ -18,13 +18,13 @@ const Card = <T extends object>({ post, printItem, editItem, deleteItem, EditIte
 
   return (
     <div className={classes.card}>
-      {printItem(post)}
+      <ItemPrint item={item}/>
       <div className={classes.buttonGroup}>
         {editItem && (
-          <EditButton onClick={partial(handleEditClick, [post])} />
+          <EditButton onClick={partial(handleEditClick, [item])} />
         )}
         {deleteItem && (
-          <DeleteButton onClick={partial(deleteItem, [post])} />
+          <DeleteButton onClick={partial(deleteItem, [item])} />
         )}
       </div>
       {openEditModal && itemToEdit && EditItemModal && editItem && (

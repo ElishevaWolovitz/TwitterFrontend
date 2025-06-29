@@ -4,14 +4,14 @@ import Card from '../Card';
 import { Styles } from './styles';
 
 
-const List = <T extends object>({items, printItem, editItem, deleteItem, EditItemModal}: ListProps<T>) => {
+const List = <T extends object>({items, ItemPrint, editItem, deleteItem, EditItemModal}: ListProps<T>) => {
     const classes = Styles();
     const createListItems = (item: T) => {
         return (
             <li className={classes.listItem}>
                 <Card
-                    post={item}
-                    printItem={printItem}
+                    item={item}
+                    ItemPrint={ItemPrint}
                     editItem={editItem}
                     deleteItem={deleteItem}
                     EditItemModal={EditItemModal}

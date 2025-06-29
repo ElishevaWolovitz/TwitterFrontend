@@ -2,7 +2,6 @@ import type { ShmoozerType } from "../../types/shmoozer.types";
 import type { AxiosInstance } from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import PrintShmoozer from '../../structures/Print/PrintShmoozer';
 import { handleError } from "../../functions";
 
 export const getShmoozers = async(
@@ -14,10 +13,6 @@ export const getShmoozers = async(
     if(shmoozers)
       setShmoozers(shmoozers.data.data);
       setLoading(false);
-}
-
-export const printShmoozer = (shmoozer: ShmoozerType) => {
-  return (<PrintShmoozer shmoozer={shmoozer} />);
 }
 
 const appendShmoozer = (newShmoozer: ShmoozerType) => (shmoozers: ShmoozerType[]) => 

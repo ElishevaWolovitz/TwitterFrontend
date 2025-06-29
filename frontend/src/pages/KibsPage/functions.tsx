@@ -2,7 +2,6 @@ import type { AxiosInstance } from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import type { KibType } from "../../types/kib.types";
-import PrintKib from '../../structures/Print/PrintKib';
 import { handleError } from "../../functions";
 import { map, filter, includes } from 'lodash/fp';
 
@@ -15,10 +14,6 @@ export const getKibs = async(
     if(kibs)
       setKibs(kibs.data.data);
       setLoading(false);
-}
-
-export const printKib = (kib: KibType) => {
-  return <PrintKib kib={kib} />;
 }
 
 const findAndEditKib = (editedKib: KibType) => (kib: KibType) =>
