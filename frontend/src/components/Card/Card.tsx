@@ -1,4 +1,4 @@
-import EditModal from '../Modal/EditModal';
+import EditModal from '../EditModal';
 import EditButton from '../Button/EditButton';
 import DeleteButton from '../Button/DeleteButton';
 import type { CardProps } from './types';
