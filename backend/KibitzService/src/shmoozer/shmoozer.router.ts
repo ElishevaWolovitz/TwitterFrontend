@@ -1,13 +1,10 @@
 import express, { Router } from 'express';
-import { controlCreateShmoozer, controlReadAllShmoozers } from './shmoozer.controller';
-import { shmoozerBodySchema } from './shmoozer.validator';
-import { validateBody } from '../joi/joi.functions';
+import { controlCreateShmoozer, controlReadAllShmoozers, controlReadShmoozer } from './shmoozer.controller';
+import { shmoozerBodySchema, shmoozerIdParamSchema } from './shmoozer.validator';
+import { validateBody, validateParams } from '../joi/joi.functions';
 
 
 const router: Router = express.Router();
-
-
-
 
 router.post(
     '/', 
@@ -17,6 +14,12 @@ router.post(
 router.get(
     '/', 
     controlReadAllShmoozers
+);
+
+router.get(
+    '/:id', 
+    validateParams(shmoozerIdParamSchema), 
+    controlReadShmoozer
 );
 
 export default router;

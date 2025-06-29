@@ -1,5 +1,6 @@
 import { ShmoozerModel }from "../models/shmoozer.model";
 import { ShmoozerType } from "../types/shmoozer.types";
+import { Types } from 'mongoose';
 
 
 //Create/Post
@@ -11,3 +12,11 @@ export const repositoryCreateShmoozer = async (shmoozer: ShmoozerType): Promise<
 export const repositoryReadAllShmoozers = async (): Promise<ShmoozerType[]>  => {
     return await ShmoozerModel.find();
 }
+
+// Read One
+export const repositoryReadShmoozer = async (shmoozerId: string | Types.ObjectId): Promise<ShmoozerType> => {
+    const readShmoozer = await ShmoozerModel.findById(shmoozerId); 
+    if(!readShmoozer)
+        throw new Error(`Shmoozer (${shmoozerId}) not able to be read.`);
+    return readShmoozer;
+};
