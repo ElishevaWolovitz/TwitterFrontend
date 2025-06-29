@@ -3,7 +3,6 @@ import { ToastContainer } from 'react-toastify';
 import Navbar from '../../components/Navbar';
 import SearchBar from '../../components/SearchBar';
 import KibEditModal from '../../structures/Modals/KibEditModal';
-import CreateNewButton from '../../components/Button/CreateNewButton';
 import CreateNewModal from '../../components/Modal/CreateNewModal';
 import KibCreateNewModal from '../../structures/Modals/KibCreateNewModal';
 import List from '../../components/List';
@@ -14,6 +13,7 @@ import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 import { toastifyTimer } from './const';
 import { partial } from 'lodash/fp';
+import { CreateNewItemButtonStyles } from '../../components/Button/CreateNewItemButton/styles';
 
 
 const KibsPage = ({api}: KibPageProps) => {
@@ -22,6 +22,8 @@ const KibsPage = ({api}: KibPageProps) => {
   const [loading, setLoading] = useState(true);
   const [filteredKibs, setFilteredKibs] = useState<KibType[]>([])
   const classes = Styles();
+  const createNewItemButtonClasses = CreateNewItemButtonStyles();
+
   useEffect(() => {
     getKibs(setKibs, setLoading, api);
   }, [api]);
@@ -48,9 +50,11 @@ const KibsPage = ({api}: KibPageProps) => {
                 deleteItem={partial( deleteKib, [api, setKibs, kibs])}
                 ModalChildrenComp={KibEditModal}
             />
-            <CreateNewButton 
-              onClick={partial(setOpenCreateNewModal, [true])}
-              />
+            <button type="button"
+              className={createNewItemButtonClasses.button}
+              onClick={partial(setOpenCreateNewModal, [true])}>
+              Create New Kib
+            </button>
             {openCreateNewModal && (
               <CreateNewModal
                 setOpenModal={setOpenCreateNewModal}

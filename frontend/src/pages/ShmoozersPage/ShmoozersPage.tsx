@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { ToastContainer} from 'react-toastify';
 import Navbar from '../../components/Navbar';
 import List from '../../components/List';
-import CreateNewButton from '../../components/Button/CreateNewButton';
 import CreateNewModal from '../../components/Modal/CreateNewModal';
 import ShmoozerCreateNewModal from '../../structures/Modals/ShmoozerCreateNewModal';
 import type { ShmoozerPageProps } from './types';
@@ -12,6 +11,7 @@ import Spinner from '../../components/Spinner';
 import { Styles } from './styles';
 import { toastifyTimer } from './consts'
 import { partial } from 'lodash/fp';
+import { CreateNewItemButtonStyles } from '../../components/Button/CreateNewItemButton/styles';
 
 const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [shmoozers, setShmoozers] = useState<ShmoozerType[]>([]);
@@ -19,7 +19,8 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
   const [loading, setLoading] = useState(true);
 
   const classes = Styles();
-
+  const createNewItemButtonClasses = CreateNewItemButtonStyles();
+  
   useEffect(() => {
     getShmoozers(setShmoozers, setLoading, api)
   }, [api]); 
@@ -41,9 +42,11 @@ const ShmoozersPage = ({ api }: ShmoozerPageProps) => {
               items={shmoozers}
               printItem={printShmoozer}
             />
-            <CreateNewButton 
-              onClick={partial(setOpenCreateNewModal, [true])}
-            />
+            <button type="button"
+              className={createNewItemButtonClasses.button}
+              onClick={partial(setOpenCreateNewModal, [true])}>
+              Create New Shmoozer
+            </button>
             {openCreateNewModal && (
               <CreateNewModal
                 setOpenModal={setOpenCreateNewModal}

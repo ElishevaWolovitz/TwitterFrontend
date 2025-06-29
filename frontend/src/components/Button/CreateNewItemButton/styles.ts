@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const Styles = createUseStyles({
+export const CreateNewItemButtonStyles = createUseStyles({
   button: {
     cursor: 'pointer',
     padding: '0.6rem 1.5rem',
