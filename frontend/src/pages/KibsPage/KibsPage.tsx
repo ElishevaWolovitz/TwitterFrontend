@@ -47,7 +47,7 @@ const KibsPage = ({api}: KibPageProps) => {
                 printItem={printKib}
                 editItem={partial(editKib,[api, setKibs])}
                 deleteItem={partial( deleteKib, [api, setKibs, kibs])}
-                ModalChildrenComp={KibEditModal}
+                EditItemModal={KibEditModal}
             />
             <button type="button"
               className={createNewItemButtonClasses.button}

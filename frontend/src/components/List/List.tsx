@@ -4,7 +4,7 @@ import Card from '../Card';
 import { Styles } from './styles';
 
 
-const List = <T extends object>({items, printItem, editItem, deleteItem, ModalChildrenComp}: ListProps<T>) => {
+const List = <T extends object>({items, printItem, editItem, deleteItem, EditItemModal}: ListProps<T>) => {
     const classes = Styles();
     const createListItems = (item: T) => {
         return (
@@ -14,7 +14,7 @@ const List = <T extends object>({items, printItem, editItem, deleteItem, ModalCh
                     printItem={printItem}
                     editItem={editItem}
                     deleteItem={deleteItem}
-                    ModalChildrenComp={ModalChildrenComp}
+                    EditItemModal={EditItemModal}
                 />
             </li>
         )

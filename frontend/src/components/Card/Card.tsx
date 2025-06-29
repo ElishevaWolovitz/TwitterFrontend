@@ -1,4 +1,3 @@
-import EditModal from '../EditModal';
 import EditButton from '../Button/EditButton';
 import DeleteButton from '../Button/DeleteButton';
 import type { CardProps } from './types';
@@ -7,7 +6,7 @@ import { useState } from 'react';
 import { partial } from 'lodash/fp';
 
 
-const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalChildrenComp }: CardProps<T>) => {
+const Card = <T extends object>({ post, printItem, editItem, deleteItem, EditItemModal }: CardProps<T>) => {
   const classes = Styles()
   const [openEditModal, setOpenEditModal] = useState(false);
   const [itemToEdit, setItemToEdit] = useState<T | null>(null);
@@ -28,13 +27,11 @@ const Card = <T extends object>({ post, printItem, editItem, deleteItem, ModalCh
           <DeleteButton onClick={partial(deleteItem, [post])} />
         )}
       </div>
-      {openEditModal && itemToEdit && ModalChildrenComp && editItem && (
-        <EditModal 
-            openModal={openEditModal} 
-            setOpenModal={setOpenEditModal} 
+      {openEditModal && itemToEdit && EditItemModal && editItem && (
+        <EditItemModal
+            {...itemToEdit}
+            onClose={partial(setOpenEditModal,[false])}
             editItem={editItem}
-            children={ModalChildrenComp} 
-            itemToEdit={itemToEdit}
         />
       )}
     </div>
