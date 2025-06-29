@@ -9,7 +9,6 @@ export const getShmoozers = async(
   setShmoozers: React.Dispatch<React.SetStateAction<ShmoozerType[]>>,
   setLoading: React.Dispatch<React.SetStateAction<boolean>>,
   api: AxiosInstance) => {
-    setLoading(false);
     const shmoozers = await api.get('/shmoozers').catch(
       handleError("Failed to get shmoozers from database"))
     if(shmoozers)
